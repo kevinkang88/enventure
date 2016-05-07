@@ -13,6 +13,12 @@ import {
 } from 'react-native';
 
 class ENVenture extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      text: ''
+  }
+
   render() {
     return (
       <View style={styles.container}>
