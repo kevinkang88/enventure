@@ -4,6 +4,8 @@ This mobile-first app is an inventory management tool for cash-based entrepreneu
 
 ### Description
 
+Cash-based entrepreneurs that are using smartphones to help run their business don't have a way to keep track of inventory and sales in a simple way. This inventory management tool allows an entrepreneur to track and make predictions for inventory management. 
+
 
 ### User Stories
 - User signs up with phone number
@@ -17,13 +19,14 @@ This mobile-first app is an inventory management tool for cash-based entrepreneu
 
 ### Setup
 
+*coming soon*
+
 ### Running
 
 ### Contributing
 1. Fork. Clone down your fork.
 2. Create a well named branch that contains the change
 3. Code! Commit early and often
-4. Add tests to make sure everything still passes
-5. Adding new functionality? Add that to the README
-6. Push the branch to Github
-7. Send a PR to enventure/develop
+4. Adding new functionality? Add that to the README
+5. Push the branch to Github
+6. Send a PR to enventure/develop
