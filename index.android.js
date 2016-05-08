@@ -26,9 +26,6 @@ class ENVenture extends Component {
                 return Navigator.SceneConfigs.FloatFromRight;
             }}
             renderScene={(route, navigator) => {
-                // count the number of func calls
-                console.log(route, navigator);
-
                 if (route.component) {
                     return React.createElement(route.component, { navigator });
                 }
