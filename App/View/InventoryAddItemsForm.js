@@ -55,11 +55,41 @@ var styles = StyleSheet.create({
 });
 
 class InventoryAdditemsForm extends Component {
+	constructor(props){
+		super(props)
+		this.state = {
+			phonenumber = '',
+			isLoading: false,
+			error: false
+		}
+	}
+	handleChange(event){
+		this.setState({
+			inventoryItem: event.nativeEvent.text
+		})
+	}
+	handleSubmit(){
+		this.setState({
+			isLoading: true
+		});
+		// store data from input
+	}
 	render (){
 		return (
 			<View style={styles.container}>
 				<Text style={styles.header}>Add Your Inventory</Text>
+				<TextInput
+					style={styles.inventoryInput}
+					value={this.state.inventoryItem}
+					onChange={this.handleChange.bind(this)} />
+				<TouchableHighlight
+					style={styles.button}
+					onPress={this.handleSubmit.bind(this)}
+					underlayColor="white"
+					<Text styles={styles.buttonText}> Add Item </Text> </TouchableHighlight>
 			</View>
 			)
 	}
 }
+
+module.exports = InventoryAdditemsForm;
