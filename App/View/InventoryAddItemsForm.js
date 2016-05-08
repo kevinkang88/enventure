@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Form from 'react-native-form'
 
 import {
 	AppRegistry,
@@ -21,7 +22,7 @@ var styles = StyleSheet.create({
 	},
 	header: {
 		textAlign: 'center',
-		fontSize: 40,
+		fontSize: 32,
 		color: '#333333',
 		margin: 10,
 		marginBottom: 5,
@@ -83,13 +84,14 @@ class InventoryAdditemsForm extends Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.header}>Add Your Inventory</Text>
-				<TextInput
-					style={styles.inventoryInput}
-					autoCorrect={false}
-					autoFocus={true}
-					placeholder="Inventory Item"
-					value={this.state.inventoryItem}
-					onChange={this.handleChange.bind(this)} />
+				<Form ref="form">
+				<View>
+					<View>
+						<TextInput type="TextInput" placeholder="Item" name="inventoryItem" value={this.state.inventoryItem} />
+						<TextInput type="TextInput" placeholder="Quantity" name="quantityOfItem" value={this.state.quantityOfItem} />
+					</View>
+				</View>
+				</Form>
 				<TouchableHighlight
 					style={styles.button}
 					onPress={this.getFormField.bind(this)}
