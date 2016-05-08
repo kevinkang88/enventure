@@ -6,6 +6,7 @@ import {
 	Text,
 	View,
 	TextInput,
+	Navigator,
 	TouchableHighlight
 } from 'react-native';
 
@@ -13,7 +14,7 @@ var styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 30,
-		marginTop: 50
+		marginTop: 50,
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#FFFFFF',
@@ -24,7 +25,7 @@ var styles = StyleSheet.create({
 		color: '#333333',
 		margin: 10,
 		marginBottom: 5,
-	}
+	},
 	inventoryInput: {
 		height: 40,
 		padding: 4,
@@ -34,7 +35,7 @@ var styles = StyleSheet.create({
 		borderColor: 'white', 
 		borderRadius: 8,
 		color: 'red'
-	}
+	},
 	buttonText: {
 		fontSize: 18,
 		color: "#111",
@@ -58,9 +59,7 @@ class InventoryAdditemsForm extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			phonenumber = '',
-			isLoading: false,
-			error: false
+			inventoryItem: ''
 		}
 	}
 	handleChange(event){
@@ -85,8 +84,9 @@ class InventoryAdditemsForm extends Component {
 				<TouchableHighlight
 					style={styles.button}
 					onPress={this.handleSubmit.bind(this)}
-					underlayColor="white"
-					<Text styles={styles.buttonText}> Add Item </Text> </TouchableHighlight>
+					underlayColor="white">
+					<Text>Item</Text>
+					</TouchableHighlight>
 			</View>
 			)
 	}
