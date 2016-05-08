@@ -112,8 +112,4 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  userInfo: React.PropTypes.object.isRequired
-}
-
 module.exports = Login;

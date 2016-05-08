@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-var Login = require('./App/View/Login');
+var Main = require('./App/View/Main');
 
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View,
-  TouchableHighlight
+  Navigator
 } from 'react-native';
 
 
@@ -19,30 +17,24 @@ var styles = StyleSheet.create({
   },
 })
 
-class ENVenture extends React.Component {
-  constructor(props){
-  super(props);
-  }
-
-  goToLogin(){
-    console.log('testing');
-    this.props.navigator.push({
-      component: Login,
-      title: 'Login'
-    })
-  }
-
+class ENVenture extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text> Hello ENVenture! </Text>
-        <TouchableHighlight
-          onPress={this.goToLogin.bind(this)}
-          underlayColor="blue">
-          <Text> ENTER </Text>
-        </TouchableHighlight>
-    </View>
-    )
+      <Navigator
+        initialRoute={{name: 'Main', component: Main}}
+            configureScene={() => {
+                return Navigator.SceneConfigs.FloatFromRight;
+            }}
+            renderScene={(route, navigator) => {
+                // count the number of func calls
+                console.log(route, navigator);
+
+                if (route.component) {
+                    return React.createElement(route.component, { navigator });
+                }
+            }}
+         />
+    );
   }
 }
 
