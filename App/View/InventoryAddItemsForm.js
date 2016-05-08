@@ -59,12 +59,18 @@ class InventoryAdditemsForm extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			inventoryItem: ''
+			inventoryItem: '',
+			quantityOfItem: ''
 		}
+	}
+	getFormField(){
+		// create another item form field
+		console.log("add another item form field")
 	}
 	handleChange(event){
 		this.setState({
-			inventoryItem: event.nativeEvent.text
+			inventoryItem: event.nativeEvent.text,
+			quantityOfItem: event.nativeEvent.text,
 		})
 	}
 	handleSubmit(){
@@ -81,11 +87,21 @@ class InventoryAdditemsForm extends Component {
 					style={styles.inventoryInput}
 					value={this.state.inventoryItem}
 					onChange={this.handleChange.bind(this)} />
+				<TextInput
+					style={styles.inventoryInput}
+					value={this.state.quantityOfItem}
+					onChange={this.handleChange.bind(this)} />
+				<TouchableHighlight
+					style={styles.button}
+					onPress={this.getFormField.bind(this)}
+					underlayColor="white">
+					<Text>Add Another Item</Text>
+					</TouchableHighlight>
 				<TouchableHighlight
 					style={styles.button}
 					onPress={this.handleSubmit.bind(this)}
 					underlayColor="white">
-					<Text>Item</Text>
+					<Text>Done</Text>
 					</TouchableHighlight>
 			</View>
 			)
