@@ -85,11 +85,10 @@ class InventoryAdditemsForm extends Component {
 				<Text style={styles.header}>Add Your Inventory</Text>
 				<TextInput
 					style={styles.inventoryInput}
+					autoCorrect={false}
+					autoFocus={true}
+					placeholder="Inventory Item"
 					value={this.state.inventoryItem}
-					onChange={this.handleChange.bind(this)} />
-				<TextInput
-					style={styles.inventoryInput}
-					value={this.state.quantityOfItem}
 					onChange={this.handleChange.bind(this)} />
 				<TouchableHighlight
 					style={styles.button}
