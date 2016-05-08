@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var Main = require('./App/View/Main');
+var Main = require('./App/Components/Main');
 
 import {
   AppRegistry,
