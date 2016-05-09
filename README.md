@@ -17,11 +17,23 @@ Cash-based entrepreneurs that are using smartphones to help run their business d
 - User can view weekly expense report of total $ earned, total $ spent, $ profit, growth %, loss %
 - User can share expense report as an image
 
-### Setup
-
-*coming soon*
-
 ### Running
+
+Before you run it, make sure you:
+$ git clone the-path
+$ cd the-folder-of-path
+$ npm install
+
+If you don't have it, you'll need:
+$ npm install --save react-native-form
+
+### Running on Android
+
+Make sure you've got the prereqs (SDK, Java)
+Start an Android emulator
+Start the app 
+ $ react-native run-android
+
 
 ### Contributing
 1. Fork. Clone down your fork.
