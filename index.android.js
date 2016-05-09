@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var Main = require('./App/View/Main');
+var Main = require('./App/Components/Main');
 
 import {
   AppRegistry,
@@ -26,9 +26,6 @@ class ENVenture extends Component {
                 return Navigator.SceneConfigs.FloatFromRight;
             }}
             renderScene={(route, navigator) => {
-                // count the number of func calls
-                console.log(route, navigator);
-
                 if (route.component) {
                     return React.createElement(route.component, { navigator });
                 }

@@ -7,7 +7,8 @@ import {
   View,
   TextInput,
   Navigator,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage,
 } from 'react-native';
 
 var styles = StyleSheet.create({
@@ -58,20 +59,27 @@ var styles = StyleSheet.create({
 });
 
 class Login extends Component {
-  constructor(props){
-  super(props);
-    this.state = {
-      phoneNumber: ''
-    }
+  constructor(props) {
+    super(props);
+    this.state = {"phoneNumber": ""}
   }
 
-  handleChange(event){
-  this.setState({
-    phoneNumber: event.nativeEvent.text
-    });
+  componentDidMount(){
+    AsyncStorage.getItem("phoneNumber")
+    .then((value) => {
+      this.setState({"phoneNumber": value});
+    }).done();
   }
-  handleSubmit(){
-    console.log("Submitted")
+
+  handleKeystroke(event){
+    this.setState({ "phoneTextField": event.nativeEvent.text });
+  }
+
+  saveData(event){
+    AsyncStorage.setItem("phoneNumber", this.state.phoneTextField);
+    this.setState({ "phoneNumber": this.state.phoneTextField });
+    console.log("Saving");
+    console.log(this.state.phoneNumber);
   }
 
   render() {
@@ -92,23 +100,25 @@ class Login extends Component {
           </Text>
         </View>
         <View style={styles.actionBox}>
+          <Text>
+            {this.state.phoneNumber}
+          </Text>
           <TextInput
-            style={{height:60, borderColor: 'blue', borderWidth: 1}}
-            onChange={this.handleChange.bind(this)}
+            onChange={this.handleKeystroke.bind(this)}
             keyboardType="phone-pad"
             placeholder="Enter Phone Number"
             placeholderTextColor="#1177DD"
-            value={this.state.phoneNumber} />
-        </View>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="white">
-          <Text style={styles.buttonText}> LOG IN / SIGN UP </Text>
-        </TouchableHighlight>
+            value={this.state.phoneTextField} />
 
+          <TouchableHighlight
+            style={styles.button}
+            onPress={this.saveData.bind(this)}
+            underlayColor="white">
+            <Text style={styles.buttonText}> CREATE ACCOUNT </Text>
+     </TouchableHighlight>
+        </View>
       </View>
-    );
+    )
   }
 }
 
