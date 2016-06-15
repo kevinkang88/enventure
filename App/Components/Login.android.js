@@ -24,7 +24,13 @@ var styles = StyleSheet.create({
     flex: 3,
   },
   actionBox: {
-    flex: 4,
+    flex: 6,
+  },
+  inputPhoneNumber: {
+    height: 60,
+    textAlign: 'center',
+    borderColor: 'blue',
+    borderWidth: 1
   },
   button: {
     height: 45,
@@ -49,6 +55,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+    fontSize: 20
   },
   buttonText: {
     fontSize: 18,
@@ -93,10 +100,10 @@ class Login extends Component {
         </View>
         <View style={styles.actionBox}>
           <TextInput
-            style={{height:60, borderColor: 'blue', borderWidth: 1}}
+            style={styles.inputPhoneNumber}
             onChange={this.handleChange.bind(this)}
             keyboardType="phone-pad"
-            placeholder="Enter Phone Number"
+            placeholder="+ 7 + phone number"
             placeholderTextColor="#1177DD"
             value={this.state.phoneNumber} />
         </View>
