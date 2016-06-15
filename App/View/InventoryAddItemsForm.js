@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from 'react-native-form'
+// import Form from 'react-native-form';
 
 import {
 	AppRegistry,
@@ -50,7 +50,7 @@ var styles = StyleSheet.create({
 		borderWidth: 1,
 		borderRadius: 8,
 		marginBottom: 10,
-		marginTop: 10,
+		marginTop: 20,
 		alignSelf: 'stretch',
 		justifyContent: 'center'
 	},
@@ -61,20 +61,28 @@ class InventoryAdditemsForm extends Component {
 		super(props)
 		this.state = {
 			inventoryItem: '',
-			quantityOfItem: ''
+			isLoading: false
 		}
 	}
-	getFormField(){
+	getTextInputField(){
 		// create another item form field
-		console.log("add another item form field")
+		console.log("add another form field")
+		return (
+		<View>
+			<Text>
+				<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
+						</Text>
+		</View>
+		)
 	}
 	handleChange(event){
+		console.log('inside handleChange', event.nativeEvent.text)
 		this.setState({
-			inventoryItem: event.nativeEvent.text,
-			quantityOfItem: event.nativeEvent.text,
+			inventoryItem: event.nativeEvent.text
 		})
 	}
 	handleSubmit(){
+		console.log('submitting', this)
 		this.setState({
 			isLoading: true
 		});
@@ -84,28 +92,22 @@ class InventoryAdditemsForm extends Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.header}>Add Your Inventory</Text>
-				<Form ref="form">
-				<View>
-					<View>
-						<TextInput type="TextInput" placeholder="Item" name="inventoryItem" value={this.state.inventoryItem} />
-						<TextInput type="TextInput" placeholder="Quantity" name="quantityOfItem" value={this.state.quantityOfItem} />
-					</View>
-				</View>
-				</Form>
+				<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
+				
 				<TouchableHighlight
 					style={styles.button}
-					onPress={this.getFormField.bind(this)}
+					onPress={this.getTextInputField.bind(this)}
 					underlayColor="white">
-					<Text>Add Another Item</Text>
-					</TouchableHighlight>
+					<Text style={styles.header}>Add Another Item</Text>
+				</TouchableHighlight>
 				<TouchableHighlight
 					style={styles.button}
 					onPress={this.handleSubmit.bind(this)}
 					underlayColor="white">
 					<Text>Done</Text>
-					</TouchableHighlight>
+				</TouchableHighlight>
 			</View>
-			)
+		)
 	}
 }
 
