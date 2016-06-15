@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Form from 'react-native-form';
+import Form from 'react-native-form';
 
 import {
 	AppRegistry,
@@ -67,22 +67,14 @@ class InventoryAdditemsForm extends Component {
 	getTextInputField(){
 		// create another item form field
 		console.log("add another form field")
-		return (
-		<View>
-			<Text>
-				<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
-						</Text>
-		</View>
-		)
 	}
 	handleChange(event){
-		console.log('inside handleChange', event.nativeEvent.text)
 		this.setState({
-			inventoryItem: event.nativeEvent.text
+			inventoryItem: event.nativeEvent.text,
 		})
 	}
 	handleSubmit(){
-		console.log('submitting', this)
+		console.log('submitting')
 		this.setState({
 			isLoading: true
 		});
