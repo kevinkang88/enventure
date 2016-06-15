@@ -69,6 +69,8 @@ class InventoryAdditemsForm extends Component {
 		console.log("add another form field")
 	}
 	handleChange(event){
+		// this.refs.form.getValues() //how do we store this in a database on the phone? for development?
+		// will need to update to get multiple attributes from form
 		this.setState({
 			inventoryItem: event.nativeEvent.text,
 		})
@@ -84,8 +86,11 @@ class InventoryAdditemsForm extends Component {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.header}>Add Your Inventory</Text>
-				<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
-				
+				<Form ref="form">
+					<View>
+					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
+				</View>
+				</Form>
 				<TouchableHighlight
 					style={styles.button}
 					onPress={this.getTextInputField.bind(this)}
