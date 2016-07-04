@@ -26,8 +26,8 @@ $ npm install
 
 If you don't have it, you'll need:  
 ```$ npm install --save react-native-form```
-```$ npm install --save react-native-router```
-```$ npm install --save react-native-swiper```
+```$ npm install --save react-native-router```  
+```$ npm install --save react-native-swiper```  
 
 ### Running on Android
 
