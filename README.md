@@ -19,10 +19,12 @@ Cash-based entrepreneurs that are using smartphones to help run their business d
 
 ### Running
 
-Before you run it, make sure you:
-$ git clone the-path
-$ cd the-folder-of-path
+Before you run it, make sure you:  
+```
+$ git clone the-path  
+$ cd the-folder-of-path  
 $ npm install
+```
 
 If you don't have it, you'll need:  
 ```$ npm install --save react-native-form```  
