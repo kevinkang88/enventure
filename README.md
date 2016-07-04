@@ -24,15 +24,17 @@ $ git clone the-path
 $ cd the-folder-of-path
 $ npm install
 
-If you don't have it, you'll need:
-$ npm install --save react-native-form
+If you don't have it, you'll need:  
+```$ npm install --save react-native-form```
+```$ npm install --save react-native-router```
+```$ npm install --save react-native-swiper```
 
 ### Running on Android
 
 Make sure you've got the prereqs (SDK, Java)
 Start an Android emulator
-Start the app 
- $ react-native run-android
+Start the app  
+ ```$ react-native run-android```
 
 
 ### Contributing
