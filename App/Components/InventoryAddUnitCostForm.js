@@ -33,20 +33,25 @@ var styles = StyleSheet.create({
 		width: 300,
 		color: '#333333'
 	},
-	inventoryInput: {
+	productName: {
 		height: 50,
 		flex: 1,
 		backgroundColor: '#ebeef0',
 		padding: 4,
-		marginRight: 5,
-		width: 200,
-		fontSize: 18,
+		marginRight: 3,
+		width: 170,
+		fontSize: 14,
 		borderWidth: 1,
 		textAlign: 'center',
 		borderColor: 'white',
 		borderRadius: 8,
 		color: 'cornflowerblue'
 	},
+	productCost: {
+		height: 50,
+		fontSize: 20,
+		width: 90
+	}
 });
 
 class InventoryAddUnitCostForm extends Component {
@@ -54,10 +59,16 @@ class InventoryAddUnitCostForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inventory: {
-				name: 'Poa Stove',
-				unitCost: '0'
-			}
+			inventory: [
+				{
+					name: 'Poa Stove',
+					unitCost: '0'
+				},
+				{
+					name: 'Queen Solar Panels',
+					unitCost: '0'
+				}
+			]
 		}
 	}
 
@@ -66,10 +77,17 @@ class InventoryAddUnitCostForm extends Component {
 		console.log("Changing cost");
 
 		this.setState({
-			inventory: {
-				name: 'Poa Stove',
-				unitCost: event.nativeEvent.text
-			}
+			inventory: [
+				{
+					name: 'Poa Stove',
+					unitCost: event.nativeEvent.text
+				},
+				{
+					name: 'Queen Solar Panels',
+					unitCost: event.nativeEvent.text
+				}
+
+			]
 		})
 
 	}
@@ -79,18 +97,31 @@ class InventoryAddUnitCostForm extends Component {
 	}
 
 	render (){
-		return (
-			<View style={styles.container}>
-				<Text style={styles.header}>Enter Your Unit Cost</Text>
-				<Form ref="form">
+
+		var list = this.state.inventory.map((item, index) => {
+			var desc = item.name ? <Text style={styles.productName}> {item.name}</Text> :
+				<View/>;
+
+			return (
+				<View key={index}>
+
 					<View style={styles.formContainer}>
-						<Text style={styles.inventoryInput}>{this.state.inventory.name}</Text>
-						<TextInput style={styles.inventoryInput}
-						           value={this.state.inventory.unitCost}
+						{desc}
+						<TextInput style={styles.productCost}
+						           value={item.unitCost}
 						           placeholder='0'
 						           onChange={this.handleChange.bind(this)}
 						/>
 					</View>
+				</View>
+			)
+		});
+
+		return (
+			<View style={styles.container}>
+				<Text style={styles.header}>Enter Your Unit Cost</Text>
+				<Form ref="form">
+					{list}
 				</Form>
 			</View>
 		)
