@@ -22,6 +22,9 @@ var styles = StyleSheet.create({
 	},
 	formContainer: {
 		backgroundColor: '#bdc3c7',
+		marginTop: 30,
+		marginBottom: 50,
+		width: 300,
 		flexDirection:'row'
 	},
 	header: {
@@ -64,7 +67,7 @@ var styles = StyleSheet.create({
 	inventoryQuantity: {
 		height: 50,
 		width: 50,
-		fontSize: 12,
+		fontSize: 30,
 		textAlign: 'center',
 		color: 'cornflowerblue'
 	}
@@ -100,11 +103,11 @@ class InventoryAdditemsForm extends Component {
 	render (){
 		return (
 			<View style={styles.container}>
-				<Text style={styles.header}>Add Your Inventory</Text>
+				<Text style={styles.header}>Inventory</Text>
 				<Form ref="form">
 					<View style={styles.formContainer}>
-					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
-					<TextInput style={styles.inventoryQuantity} value={this.state.inventoryQuantity} placeholder="#" onChange={this.handleChange.bind(this) } />
+					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="new item" onChange={this.handleChange.bind(this) } />
+					<TextInput style={styles.inventoryQuantity} value={this.state.inventoryQuantity} placeholder="1" onChange={this.handleChange.bind(this) } />
 				</View>
 				</Form>
 				<TouchableHighlight
@@ -117,7 +120,7 @@ class InventoryAdditemsForm extends Component {
 					style={styles.button}
 					onPress={this.getTextInputField.bind(this)}
 					underlayColor="white">
-					<Text style={styles.header}>Add Items</Text>
+					<Text style={styles.header}>+ Items</Text>
 				</TouchableHighlight>
 			</View>
 		)
