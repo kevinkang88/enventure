@@ -87,6 +87,7 @@ class InventoryAdditemsForm extends Component {
 		// will need to update to get multiple attributes from form
 		this.setState({
 			inventoryItem: event.nativeEvent.text,
+			inventoryQuantity: event.nativeEvent.text,
 		})
 	}
 	handleSubmit(){
@@ -94,7 +95,7 @@ class InventoryAdditemsForm extends Component {
 		this.setState({
 			isLoading: true
 		});
-		// store data from input
+		// store data from input into database
 	}
 	render (){
 		return (
