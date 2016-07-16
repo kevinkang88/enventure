@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 var Login = require('./Login');
-var InventoryAdditemsForm = require('../View/InventoryAddItemsForm');
+var InventoryAdditemsForm = require('./InventoryAddItemsForm');
 
 import {
   AppRegistry,
