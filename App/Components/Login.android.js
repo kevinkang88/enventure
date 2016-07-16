@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const Schema = require('../Models/Schema.js');
 
 import {
   AppRegistry,
@@ -82,6 +83,7 @@ class Login extends Component {
   }
 
   render() {
+
     return (
       <View style={styles.container}>
         <View style={styles.welcomeBox}>
