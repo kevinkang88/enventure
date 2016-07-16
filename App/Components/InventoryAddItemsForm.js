@@ -20,6 +20,10 @@ var styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#FFFFFF',
 	},
+	formContainer: {
+		backgroundColor: '#bdc3c7',
+		flexDirection:'row'
+	},
 	header: {
 		textAlign: 'center',
 		fontSize: 32,
@@ -28,16 +32,17 @@ var styles = StyleSheet.create({
 	},
 	inventoryInput: {
 		height: 50,
+		flex: 1,
 		backgroundColor: '#ebeef0',
 		padding: 4,
 		marginRight: 5,
-		width: 300,
+		width: 200,
 		fontSize: 18,
 		borderWidth: 1,
 		textAlign: 'center',
 		borderColor: 'white', 
 		borderRadius: 8,
-		color: 'red'
+		color: 'cornflowerblue'
 	},
 	buttonText: {
 		fontSize: 18,
@@ -56,6 +61,13 @@ var styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		justifyContent: 'center'
 	},
+	inventoryQuantity: {
+		height: 50,
+		width: 50,
+		fontSize: 12,
+		textAlign: 'center',
+		color: 'cornflowerblue'
+	}
 });
 
 class InventoryAdditemsForm extends Component {
@@ -89,8 +101,9 @@ class InventoryAdditemsForm extends Component {
 			<View style={styles.container}>
 				<Text style={styles.header}>Add Your Inventory</Text>
 				<Form ref="form">
-					<View>
+					<View style={styles.formContainer}>
 					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
+					<TextInput style={styles.inventoryQuantity} value={this.state.inventoryQuantity} placeholder="#" onChange={this.handleChange.bind(this) } />
 				</View>
 				</Form>
 				<TouchableHighlight
