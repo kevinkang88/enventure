@@ -23,14 +23,18 @@ var styles = StyleSheet.create({
 	header: {
 		textAlign: 'center',
 		fontSize: 32,
+		width: 300,
 		color: '#333333'
 	},
 	inventoryInput: {
 		height: 50,
+		backgroundColor: '#ebeef0',
 		padding: 4,
 		marginRight: 5,
+		width: 300,
 		fontSize: 18,
 		borderWidth: 1,
+		textAlign: 'center',
 		borderColor: 'white', 
 		borderRadius: 8,
 		color: 'red'
