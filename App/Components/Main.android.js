@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 var Login = require('./Login');
 var InventoryAdditemsForm = require('./InventoryAddItemsForm');
+var AddCost = require('./InventoryAddUnitCostForm');
 
 import {
   AppRegistry,
@@ -16,9 +17,9 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-})
+    backgroundColor: '#FFFFFF'
+  }
+});
 
 class Main extends Component {
   constructor(props){
@@ -37,6 +38,13 @@ class Main extends Component {
       component: InventoryAdditemsForm
     });
   }
+  goToAddCost(){
+    this.props.navigator.push({
+      name: 'AddCostToInventory',
+      component: AddCost
+    })
+  }
+	
   render() {
     return (
 
@@ -51,6 +59,11 @@ class Main extends Component {
           onPress={this.goToAddItems.bind(this)}
           underlayColor="blue">
           <Text> Add Items to Inventory </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={this.goToAddCost.bind(this)}
+          underlayColor="blue">
+          <Text> Add Cost to Inventory </Text>
         </TouchableHighlight>
     </View>
     )
