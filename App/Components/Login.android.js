@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+// const Realm = require('realm');
+
+// const Realm = require('realm');
+const Schema = require('../Models/Schema.js');
+// const Schemai = require('../Models/Inventory.js');
 
 import {
   AppRegistry,
@@ -82,6 +87,7 @@ class Login extends Component {
   }
 
   render() {
+
     return (
       <View style={styles.container}>
         <View style={styles.welcomeBox}>
@@ -96,6 +102,9 @@ class Login extends Component {
           </Text>
           <Text style={styles.sellText}>
             Predict Orders
+          </Text>
+          <Text style={styles.sellText}>
+            Count of Users in Realm: {realm.objects('User').length}
           </Text>
         </View>
         <View style={styles.actionBox}>
