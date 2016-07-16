@@ -75,7 +75,7 @@ var styles = StyleSheet.create({
 
 class InventoryAdditemsForm extends Component {
 	constructor(props){
-		super(props)
+		super(props);
 		this.state = {
 			inventoryItem: '',
 			isLoading: false
@@ -90,7 +90,7 @@ class InventoryAdditemsForm extends Component {
 		// will need to update to get multiple attributes from form
 		this.setState({
 			inventoryItem: event.nativeEvent.text,
-			inventoryQuantity: event.nativeEvent.text,
+			inventoryQuantity: event.nativeEvent.text
 		})
 	}
 	handleSubmit(){
@@ -106,9 +106,12 @@ class InventoryAdditemsForm extends Component {
 				<Text style={styles.header}>Inventory</Text>
 				<Form ref="form">
 					<View style={styles.formContainer}>
-					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="new item" onChange={this.handleChange.bind(this) } />
-					<TextInput style={styles.inventoryQuantity} value={this.state.inventoryQuantity} placeholder="1" onChange={this.handleChange.bind(this) } />
-				</View>
+						<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="new item" onChange={this.handleChange.bind(this) } />
+						<TextInput style={styles.inventoryQuantity} 
+						           value={this.state.inventoryQuantity} 
+						           placeholder="1" 
+						           onChange={this.handleChange.bind(this) } />
+					</View>
 				</Form>
 				<TouchableHighlight
 					style={styles.button}
