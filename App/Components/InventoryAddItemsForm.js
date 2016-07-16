@@ -41,9 +41,9 @@ var styles = StyleSheet.create({
 		alignSelf: 'center'
 	},
 	button: {
-		height: 45,
+		height: 55,
 		flexDirection: 'row',
-		backgroundColor: 'white',
+		backgroundColor: 'cornflowerblue',
 		borderColor: 'white',
 		borderWidth: 1,
 		borderRadius: 8,
@@ -91,15 +91,15 @@ class InventoryAdditemsForm extends Component {
 				</Form>
 				<TouchableHighlight
 					style={styles.button}
-					onPress={this.getTextInputField.bind(this)}
+					onPress={this.handleSubmit.bind(this)}
 					underlayColor="white">
-					<Text style={styles.header}>Add Another Item</Text>
+					<Text style={styles.header}>DONE</Text>
 				</TouchableHighlight>
 				<TouchableHighlight
 					style={styles.button}
-					onPress={this.handleSubmit.bind(this)}
+					onPress={this.getTextInputField.bind(this)}
 					underlayColor="white">
-					<Text>Done</Text>
+					<Text style={styles.header}>Add Items</Text>
 				</TouchableHighlight>
 			</View>
 		)
