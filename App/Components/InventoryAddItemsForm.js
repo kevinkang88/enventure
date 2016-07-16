@@ -20,22 +20,32 @@ var styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#FFFFFF',
 	},
+	formContainer: {
+		backgroundColor: '#bdc3c7',
+		marginTop: 30,
+		marginBottom: 50,
+		width: 300,
+		flexDirection:'row'
+	},
 	header: {
 		textAlign: 'center',
 		fontSize: 32,
-		color: '#333333',
-		margin: 10,
-		marginBottom: 5,
+		width: 300,
+		color: '#333333'
 	},
 	inventoryInput: {
-		height: 40,
+		height: 50,
+		flex: 1,
+		backgroundColor: '#ebeef0',
 		padding: 4,
 		marginRight: 5,
-		fontSize: 22,
+		width: 200,
+		fontSize: 18,
 		borderWidth: 1,
+		textAlign: 'center',
 		borderColor: 'white', 
 		borderRadius: 8,
-		color: 'red'
+		color: 'cornflowerblue'
 	},
 	buttonText: {
 		fontSize: 18,
@@ -43,9 +53,9 @@ var styles = StyleSheet.create({
 		alignSelf: 'center'
 	},
 	button: {
-		height: 45,
+		height: 55,
 		flexDirection: 'row',
-		backgroundColor: 'white',
+		backgroundColor: 'cornflowerblue',
 		borderColor: 'white',
 		borderWidth: 1,
 		borderRadius: 8,
@@ -54,6 +64,13 @@ var styles = StyleSheet.create({
 		alignSelf: 'stretch',
 		justifyContent: 'center'
 	},
+	inventoryQuantity: {
+		height: 50,
+		width: 50,
+		fontSize: 30,
+		textAlign: 'center',
+		color: 'cornflowerblue'
+	}
 });
 
 class InventoryAdditemsForm extends Component {
@@ -73,6 +90,7 @@ class InventoryAdditemsForm extends Component {
 		// will need to update to get multiple attributes from form
 		this.setState({
 			inventoryItem: event.nativeEvent.text,
+			inventoryQuantity: event.nativeEvent.text,
 		})
 	}
 	handleSubmit(){
@@ -80,28 +98,29 @@ class InventoryAdditemsForm extends Component {
 		this.setState({
 			isLoading: true
 		});
-		// store data from input
+		// store data from input into database
 	}
 	render (){
 		return (
 			<View style={styles.container}>
-				<Text style={styles.header}>Add Your Inventory</Text>
+				<Text style={styles.header}>Inventory</Text>
 				<Form ref="form">
-					<View>
-					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="item" onChange={this.handleChange.bind(this) } />
+					<View style={styles.formContainer}>
+					<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="new item" onChange={this.handleChange.bind(this) } />
+					<TextInput style={styles.inventoryQuantity} value={this.state.inventoryQuantity} placeholder="1" onChange={this.handleChange.bind(this) } />
 				</View>
 				</Form>
 				<TouchableHighlight
 					style={styles.button}
-					onPress={this.getTextInputField.bind(this)}
+					onPress={this.handleSubmit.bind(this)}
 					underlayColor="white">
-					<Text style={styles.header}>Add Another Item</Text>
+					<Text style={styles.header}>DONE</Text>
 				</TouchableHighlight>
 				<TouchableHighlight
 					style={styles.button}
-					onPress={this.handleSubmit.bind(this)}
+					onPress={this.getTextInputField.bind(this)}
 					underlayColor="white">
-					<Text>Done</Text>
+					<Text style={styles.header}>+ Items</Text>
 				</TouchableHighlight>
 			</View>
 		)
