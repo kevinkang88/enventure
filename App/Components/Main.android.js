@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 var Login = require('./Login');
-var InventoryAdditemsForm = require('./InventoryAddItemsForm');
-var AddCost = require('./InventoryAddUnitCostForm');
+var InventoryAdditemsForm = require('./InventoryAddItemsForm.android');
+var Inventory = require('./Inventory.andorid');
+var AddCost = require('./InventoryAddUnitCostForm.andorid');
 
 import {
   AppRegistry,
@@ -32,6 +33,12 @@ class Main extends Component {
         component: Login
     });
   }
+	goToInventory(){
+		this.props.navigator.push({
+			name: 'Inventory',
+			component: Inventory
+		});
+	}
   goToAddItems(){
     this.props.navigator.push({
       name: 'InventoryAdditemsForm',
@@ -55,6 +62,11 @@ class Main extends Component {
           underlayColor="blue">
           <Text> ENTER </Text>
         </TouchableHighlight>
+	      <TouchableHighlight
+		      onPress={this.goToInventory.bind(this)}
+		      underlayColor="red">
+		      <Text> INVENTORY </Text>
+	      </TouchableHighlight>
         <TouchableHighlight
           onPress={this.goToAddItems.bind(this)}
           underlayColor="blue">
