@@ -38,7 +38,7 @@ export default class EnventureButton extends React.Component {
             sideMarginWidth = .05;
             buttonWidth = .9;
         } else {
-            sideMarginWidth = (100 - this.props.width) / 100;
+            sideMarginWidth = ((100 - this.props.width) / 2 ) / 100;
             buttonWidth = this.props.width / 100;
         }
 
@@ -49,7 +49,7 @@ export default class EnventureButton extends React.Component {
                 <View style={{flex:sideMarginWidth}}/>
                 <TouchableHighlight style={[styles.defaultButton, {flex:buttonWidth}]}
                                     onPress={this.props.onPress}
-                                    underlayColor="blue">
+                                    underlayColor={CONFIG.GREY}>
                     <Text style={styles.buttonText}> {this.props.text.toUpperCase()} </Text>
                 </TouchableHighlight>
                 <View style={{flex:sideMarginWidth}}/>
