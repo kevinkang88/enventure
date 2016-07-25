@@ -12,7 +12,7 @@ import {
 	TouchableNativeFeedback
 } from 'react-native';
 
-var InventoryAddItemsForm = require('./InventoryAddItemsForm.android');
+var CONFIG = require('../Utilities/Config.js');
 
 var styles = StyleSheet.create({
 	container: {
@@ -104,10 +104,7 @@ class Inventory extends Component {
 	}
 
 	handleGoToAdd(){
-		this.props.navigator.push({
-			name: 'InventoryAddItemsForm',
-			component: InventoryAddItemsForm
-		});
+		this.props.navigator.push(CONFIG.ROUTES.ADD_ITEMS);
 	}
 
 	renderRow(rowData){

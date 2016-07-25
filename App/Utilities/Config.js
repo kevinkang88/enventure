@@ -1,4 +1,36 @@
+var AddCost = require('../Components/InventoryAddUnitCostForm');
+var AddItems = require('../Components/InventoryAddItemsForm');
+var Inventory = require('../Components/Inventory');
+var Login = require('../Components/Login');
+var Main = require('../Components/Main');
+
 module.exports = {
+    //================================================================================
+    // App Routes
+    //================================================================================
+    ROUTES: {
+        MAIN: {
+            title: 'Main',
+            component: Main
+        },
+        LOGIN: {
+            title: 'Login',
+            component: Login
+        },
+        INVENTORY: {
+            title: 'Inventory',
+            component: Inventory
+        },
+        ADD_ITEMS: {
+            title: 'Add Items To Inventory',
+            component: AddItems
+        },
+        ADD_COST: {
+            title: 'Add Cost To Inventory',
+            component: AddCost
+        }
+    },
+
     //================================================================================
     // Color Constants
     //================================================================================
