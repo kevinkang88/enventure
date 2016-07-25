@@ -17,7 +17,7 @@ class ENVenture extends Component {
                         return React.createElement(route.component, { navigator });
                     }
                 }}
-                />
+            />
         );
     }
 }
