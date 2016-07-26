@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-var Login = require('./Login');
-var InventoryAdditemsForm = require('./InventoryAddItemsForm.android');
-var Inventory = require('./Inventory.andorid');
-var AddCost = require('./InventoryAddUnitCostForm.andorid');
+var CONFIG = require('../Utilities/Config.js');
+var EnventureButton = require('./EnventureButton.js').default;
 
 import {
   AppRegistry,
@@ -17,67 +15,39 @@ var styles = StyleSheet.create({
   container:{
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#FFFFFF'
   }
 });
 
 class Main extends Component {
-  constructor(props){
-  super(props);
+  constructor(props) {
+    super(props);
   }
 
-  goToLogin(){
-    this.props.navigator.push({
-        name: 'Login',
-        component: Login
-    });
+  goToLogin() {
+    this.props.navigator.push(CONFIG.ROUTES.LOGIN);
   }
-	goToInventory(){
-		this.props.navigator.push({
-			name: 'Inventory',
-			component: Inventory
-		});
-	}
-  goToAddItems(){
-    this.props.navigator.push({
-      name: 'InventoryAdditemsForm',
-      component: InventoryAdditemsForm
-    });
+
+  goToInventory() {
+    this.props.navigator.push(CONFIG.ROUTES.INVENTORY);
   }
-  goToAddCost(){
-    this.props.navigator.push({
-      name: 'AddCostToInventory',
-      component: AddCost
-    })
+
+  goToAddItems() {
+    this.props.navigator.push(CONFIG.ROUTES.ADD_ITEMS);
   }
-	
+
+  goToAddCost() {
+    this.props.navigator.push(CONFIG.ROUTES.ADD_COST);
+  }
+
   render() {
     return (
-
       <View style={styles.container}>
-        <Text> Hello ENVenture! </Text>
-        <TouchableHighlight
-          onPress={this.goToLogin.bind(this)}
-          underlayColor="blue">
-          <Text> ENTER </Text>
-        </TouchableHighlight>
-	      <TouchableHighlight
-		      onPress={this.goToInventory.bind(this)}
-		      underlayColor="red">
-		      <Text> INVENTORY </Text>
-	      </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this.goToAddItems.bind(this)}
-          underlayColor="blue">
-          <Text> Add Items to Inventory </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this.goToAddCost.bind(this)}
-          underlayColor="blue">
-          <Text> Add Cost to Inventory </Text>
-        </TouchableHighlight>
-    </View>
+        <EnventureButton width={50} text='Enter' onPress={this.goToLogin.bind(this)}/>
+        <EnventureButton width={75} text='Inventory' onPress={this.goToInventory.bind(this)}/>
+        <EnventureButton text='Add Items to Inventory' onPress={this.goToAddItems.bind(this)}/>
+        <EnventureButton text='Add Cost to Inventory' onPress={this.goToAddCost.bind(this)}/>
+      </View>
     )
   }
 }
