@@ -15,7 +15,10 @@ var styles = StyleSheet.create({
         height: CONFIG.BUTTON_HEIGHT,
         borderRadius: CONFIG.BUTTON_BORDER_RADIUS,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 5,
+        marginBottom: 5
+
     },
 
     buttonText: {
@@ -43,8 +46,6 @@ export default class EnventureButton extends React.Component {
         }
 
         return (
-        <View style={{flexDirection: 'column'}}>
-            <View style={styles.verticalMargin} />
             <View style={{flexDirection: 'row'}}>
                 <View style={{flex:sideMarginWidth}}/>
                 <TouchableHighlight style={[styles.defaultButton, {flex:buttonWidth}]}
@@ -54,8 +55,6 @@ export default class EnventureButton extends React.Component {
                 </TouchableHighlight>
                 <View style={{flex:sideMarginWidth}}/>
             </View>
-            <View style={styles.verticalMargin} />
-        </View>
         )
     }
 
