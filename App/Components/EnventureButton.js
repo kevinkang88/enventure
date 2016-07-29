@@ -25,10 +25,6 @@ var styles = StyleSheet.create({
         fontSize: CONFIG.BUTTON_FONT_SIZE,
         fontWeight: CONFIG.BUTTON_FONT_WEIGHT,
         color: CONFIG.WHITE
-    },
-
-    verticalMargin: {
-        height:5
     }
 });
 
