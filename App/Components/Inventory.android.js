@@ -19,10 +19,7 @@ var CONFIG = require('../Utilities/Config.js');
 var styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 30,
-		marginTop: 50,
 		justifyContent: 'center',
-		alignItems: 'center',
 		backgroundColor: '#FFFFFF'
 	},
 	formContainer: {
@@ -126,8 +123,13 @@ class Inventory extends Component {
 
 	footer(){
 		return (
-			<View style={styles.footerContainer}>
-				<EnventureButton icon="plus-circle" onPress={this.handleGoToAdd.bind(this)}/>
+			<View>
+				<EnventureButton width='100' 
+				                 type='footer' 
+				                 icon='plus-circle' 
+				                 iconSize='60'
+				                 onPress={this.handleGoToAdd.bind(this)}
+				/>
 			</View>
 		)
 	}
@@ -137,7 +139,7 @@ class Inventory extends Component {
 			<View style={styles.container}>
 				<ListView
 					dataSource={this.state.dataSource}
-					renderRow={this.renderRow.bind(this)} />
+					renderRow={this.renderRow.bind(this)}/>
 				{this.footer()}
 			</View>
 		)

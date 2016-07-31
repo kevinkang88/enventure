@@ -19,7 +19,13 @@ var styles = StyleSheet.create({
 		marginTop: 5,
 		marginBottom: 5
 	},
-
+	footerButton: {
+		backgroundColor: '#6BCEBB',
+		height: 60,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 5
+	},
 	buttonText: {
 		fontSize: 25,
 		fontWeight: 'bold',
@@ -29,11 +35,21 @@ var styles = StyleSheet.create({
 
 class EnventureButton extends React.Component {
 
-	textOrButton(props) {
-		if (props.icon) {
-			return (<Icon name={props.icon} size={30} color="#FFFFFF" />);
+	// Defines if the button renders text or icon
+	textOrButton() {
+		if (this.props.icon) {
+			return (<Icon name={this.props.icon} size={parseInt(this.props.iconSize)} color="#FFFFFF" />);
 		}else{
 			return(<Text style={styles.buttonText}> {this.props.text.toUpperCase()}</Text>);
+		}
+	}
+
+	// Defines the type of button footer or regular
+	type(){
+		if (this.props.type && this.props.type.toUpperCase() == 'FOOTER'){
+			return(styles.footerButton)
+		}else{
+			return(styles.defaultButton)
 		}
 	}
 
@@ -52,10 +68,10 @@ class EnventureButton extends React.Component {
 		return (
 			<View style={{flexDirection: 'row'}}>
 				<View style={{flex:sideMarginWidth}}/>
-				<TouchableHighlight style={[styles.defaultButton, {flex:buttonWidth}]}
+				<TouchableHighlight style={[this.type(), {flex:buttonWidth}]}
 				                    onPress={this.props.onPress}
 				                    underlayColor={'#666666'}>
-					{this.textOrButton(this.props)}
+					{this.textOrButton()}
 				</TouchableHighlight>
 				<View style={{flex:sideMarginWidth}}/>
 			</View>
