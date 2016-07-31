@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+var EnventureButton = require('./EnventureButton.js');
+
 import {
 	AppRegistry,
 	StyleSheet,
@@ -69,7 +71,6 @@ var styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	footerContainer: {
-		backgroundColor: '#E3E3E3',
 		alignItems: 'center',
 		flexDirection: 'row'
 	}
@@ -126,12 +127,7 @@ class Inventory extends Component {
 	footer(){
 		return (
 			<View style={styles.footerContainer}>
-				<TouchableHighlight
-					style={styles.button}
-					onPress={this.handleGoToAdd.bind(this)}
-					underlayColor="#88D4F5">
-					<Text style={styles.buttonText}>Add More Products</Text>
-				</TouchableHighlight>
+				<EnventureButton icon="plus-circle" onPress={this.handleGoToAdd.bind(this)}/>
 			</View>
 		)
 	}

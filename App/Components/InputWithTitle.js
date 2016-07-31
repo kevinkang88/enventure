@@ -29,7 +29,7 @@ var styles = StyleSheet.create({
     }
 });
 
-export default class InputWithTitle extends React.Component {
+class InputWithTitle extends React.Component {
     render() {
         return (
             <View style={{flexDirection: 'row'}}>
@@ -45,4 +45,6 @@ export default class InputWithTitle extends React.Component {
         )
     }
 
-};
+}
+
+module.exports = InputWithTitle;
