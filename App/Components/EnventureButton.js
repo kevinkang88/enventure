@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-var CONFIG = require('../Utilities/Config.js');
 
 import {
     StyleSheet,
@@ -11,9 +10,9 @@ import {
 
 var styles = StyleSheet.create({
     defaultButton: {
-        backgroundColor: CONFIG.CYAN,
-        height: CONFIG.BUTTON_HEIGHT,
-        borderRadius: CONFIG.BUTTON_BORDER_RADIUS,
+        backgroundColor: '#6BCEBB',
+        height: 60,
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 5,
@@ -21,9 +20,9 @@ var styles = StyleSheet.create({
     },
 
     buttonText: {
-        fontSize: CONFIG.BUTTON_FONT_SIZE,
-        fontWeight: CONFIG.BUTTON_FONT_WEIGHT,
-        color: CONFIG.WHITE
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#FFFFFF'
     }
 });
 
@@ -45,7 +44,7 @@ export default class EnventureButton extends React.Component {
                 <View style={{flex:sideMarginWidth}}/>
                 <TouchableHighlight style={[styles.defaultButton, {flex:buttonWidth}]}
                                     onPress={this.props.onPress}
-                                    underlayColor={CONFIG.GREY}>
+                                    underlayColor={'#666666'}>
                     <Text style={styles.buttonText}> {this.props.text.toUpperCase()} </Text>
                 </TouchableHighlight>
                 <View style={{flex:sideMarginWidth}}/>

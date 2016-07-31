@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-var CONFIG = require('../Utilities/Config.js');
 
 import {
     StyleSheet,
@@ -20,9 +19,9 @@ var styles = StyleSheet.create({
         flex:1,
         height: 55,
         borderWidth: 3,
-        borderRadius: CONFIG.BUTTON_BORDER_RADIUS,
+        borderRadius: 10,
         borderStyle: 'solid',
-        borderColor: CONFIG.CYAN
+        borderColor: '#6BCEBB'
     },
 
     inputStyle: {
