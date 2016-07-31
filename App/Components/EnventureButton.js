@@ -18,7 +18,6 @@ var styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 5,
         marginBottom: 5
-
     },
 
     buttonText: {

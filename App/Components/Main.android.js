@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 var CONFIG = require('../Utilities/Config.js');
 var EnventureButton = require('./EnventureButton.js').default;
+var InputWithTitle = require('./InputWithTitle.js').default;
 
 import {
   AppRegistry,
@@ -43,6 +44,7 @@ class Main extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <InputWithTitle placeholder='Name'>Inventory Item Name</InputWithTitle>
         <EnventureButton width={50} text='Enter' onPress={this.goToLogin.bind(this)}/>
         <EnventureButton width={75} text='Inventory' onPress={this.goToInventory.bind(this)}/>
         <EnventureButton text='Add Items to Inventory' onPress={this.goToAddItems.bind(this)}/>
