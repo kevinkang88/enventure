@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 var EnventureButton = require('./EnventureButton.js');
+var AddItems = require('./InventoryAddItemsForm');
 
 import {
+	Alert,
 	AppRegistry,
 	StyleSheet,
 	Text,
@@ -14,7 +16,7 @@ import {
 	TouchableNativeFeedback
 } from 'react-native';
 
-var CONFIG = require('../Utilities/Config.js');
+
 
 var styles = StyleSheet.create({
 	container: {
@@ -55,7 +57,13 @@ var styles = StyleSheet.create({
 		width: 90
 	},
 	rowContainer: {
-		padding: 10
+		flexDirection: 'column',
+		flex: 1,
+		padding: 30
+	},
+	rowText: {
+		fontSize:25,
+		padding:0
 	},
 	buttonText: {
 		fontSize: 18
@@ -102,27 +110,30 @@ class Inventory extends Component {
 	}
 
 	handleGoToAdd(){
-		this.props.navigator.push(CONFIG.ROUTES.ADD_ITEMS);
+		this.props.navigator.push({
+			title: 'Add Items To Inventory',
+			component: AddItems
+		});
 	}
 
 	renderRow(rowData){
 		return (
-			<View style={{flexDirection: 'row'}}>
-				<Text> {rowData.name} $ {rowData.price}</Text>
-				<TouchableNativeFeedback
-					style={styles.button}
-					onPress={this.handleTransaction.bind(this)}
-					underlayColor="#88D4F5">
-					<View>
-						<EnventureButton
-							width="100"
-							type="list"
-							icon="dollar"
-							iconSize="15"
-							onPress={this.handleGoToAdd.bind(this)}
-						/>
-					</View>
-				</TouchableNativeFeedback>
+			<View style={styles.rowContainer}>
+				<Text style={styles.rowText}> {rowData.name} ${rowData.price}</Text>
+				<EnventureButton
+					width="100"
+					type="list"
+					icon="dollar"
+					iconSize="15"
+					onPress={() => Alert.alert(
+            'You are about to sale a product',
+            'Confirm transaction:',
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+              {text: 'OK', onPress: () => this.handleTransaction.bind(this)}
+            ]
+          )}
+				/>
 			</View>
 		)
 	}
