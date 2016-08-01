@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 var styles = StyleSheet.create({
+	// This code should be more reusable
 	default: {
 		backgroundColor: '#6BCEBB',
 		height: 60,
@@ -43,6 +44,7 @@ class EnventureButton extends React.Component {
 
 	// Defines if the button renders text or icon
 	textOrButton() {
+		// Supporting text and icon van be done in an smarter way that we can explore
 		if (this.props.icon) {
 			return (<Icon name={this.props.icon} size={parseInt(this.props.iconSize)} color="#FFFFFF" />);
 		}else{
