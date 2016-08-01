@@ -107,14 +107,20 @@ class Inventory extends Component {
 
 	renderRow(rowData){
 		return (
-			<View>
-				<Text> {rowData.name} {rowData.price}</Text>
+			<View style={{flexDirection: 'row'}}>
+				<Text> {rowData.name} $ {rowData.price}</Text>
 				<TouchableNativeFeedback
 					style={styles.button}
 					onPress={this.handleTransaction.bind(this)}
 					underlayColor="#88D4F5">
 					<View>
-						<Text style={styles.buttonText}>SALE</Text>
+						<EnventureButton
+							width="100"
+							type="list"
+							icon="dollar"
+							iconSize="15"
+							onPress={this.handleGoToAdd.bind(this)}
+						/>
 					</View>
 				</TouchableNativeFeedback>
 			</View>
@@ -124,11 +130,12 @@ class Inventory extends Component {
 	footer(){
 		return (
 			<View>
-				<EnventureButton width='100' 
-				                 type='footer' 
-				                 icon='plus-circle' 
-				                 iconSize='60'
-				                 onPress={this.handleGoToAdd.bind(this)}
+				<EnventureButton
+					width='100'
+				  type='footer'
+				  icon='plus-circle'
+				  iconSize='60'
+				  onPress={this.handleGoToAdd.bind(this)}
 				/>
 			</View>
 		)

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 var styles = StyleSheet.create({
-	defaultButton: {
+	default: {
 		backgroundColor: '#6BCEBB',
 		height: 60,
 		borderRadius: 10,
@@ -19,12 +19,19 @@ var styles = StyleSheet.create({
 		marginTop: 5,
 		marginBottom: 5
 	},
-	footerButton: {
+	footer: {
 		backgroundColor: '#6BCEBB',
 		height: 60,
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginTop: 5
+	},
+	list: {
+		backgroundColor: '#6BCEBB',
+		height: 20,
+		borderRadius: 100,
+		justifyContent: 'center',
+		alignItems: 'center'
 	},
 	buttonText: {
 		fontSize: 25,
@@ -47,9 +54,11 @@ class EnventureButton extends React.Component {
 	// Defines the type of button footer or regular
 	type(){
 		if (this.props.type && this.props.type.toUpperCase() == 'FOOTER'){
-			return(styles.footerButton)
+			return(styles.footer)
+		}else if(this.props.type && this.props.type.toUpperCase() == 'LIST') {
+			return(styles.list)
 		}else{
-			return(styles.defaultButton)
+			return(styles.default)
 		}
 	}
 
