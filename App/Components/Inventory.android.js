@@ -126,8 +126,8 @@ class Inventory extends Component {
 					icon="dollar"
 					iconSize="15"
 					onPress={() => Alert.alert(
-            'You are about to sale a product',
-            'Confirm transaction:',
+            'You are about to sell a product',
+            'Confirm transaction',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
               {text: 'OK', onPress: () => {this.handleTransaction()}}
