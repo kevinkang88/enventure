@@ -130,7 +130,7 @@ class Inventory extends Component {
             'Confirm transaction:',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-              {text: 'OK', onPress: () => this.handleTransaction.bind(this)}
+              {text: 'OK', onPress: () => {this.handleTransaction()}}
             ]
           )}
 				/>
