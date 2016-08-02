@@ -14,7 +14,6 @@ var styles = StyleSheet.create({
         fontSize: 15,
         marginBottom:5
     },
-
     inputWrapper: {
         flex:1,
         height: 55,
@@ -23,7 +22,6 @@ var styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#6BCEBB'
     },
-
     inputStyle: {
         height:55
     }

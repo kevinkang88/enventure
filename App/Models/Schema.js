@@ -1,4 +1,4 @@
-var Realm = require('realm')
+var Realm = require('realm');
 
 const UserSchema = {
   name: 'User',
@@ -14,14 +14,14 @@ const InventorySchema = {
     name: 'string',
     items: {type: 'list', objectType: 'Item'}
   }
-}
+};
 
 const ItemSchema = {
   name: 'Item',
   properties: {
     name: 'string'
   }
-}
+};
 
 let schemas = new Realm({schema: [UserSchema, InventorySchema, ItemSchema]});
 
