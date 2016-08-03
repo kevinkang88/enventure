@@ -14,7 +14,6 @@ var styles = StyleSheet.create({
         fontSize: 15,
         marginBottom:5
     },
-
     inputWrapper: {
         flex:1,
         height: 55,
@@ -23,13 +22,12 @@ var styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#6BCEBB'
     },
-
     inputStyle: {
         height:55
     }
 });
 
-export default class InputWithTitle extends React.Component {
+class InputWithTitle extends React.Component {
     render() {
         return (
             <View style={{flexDirection: 'row'}}>
@@ -45,4 +43,6 @@ export default class InputWithTitle extends React.Component {
         )
     }
 
-};
+}
+
+module.exports = InputWithTitle;

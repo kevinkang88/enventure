@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 
+var EnventureButton = require('./EnventureButton.js');
+var AddItems = require('./InventoryAddItemsForm');
+
 import {
+	Alert,
 	AppRegistry,
 	StyleSheet,
 	Text,
@@ -12,15 +16,12 @@ import {
 	TouchableNativeFeedback
 } from 'react-native';
 
-var CONFIG = require('../Utilities/Config.js');
+
 
 var styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		padding: 30,
-		marginTop: 50,
 		justifyContent: 'center',
-		alignItems: 'center',
 		backgroundColor: '#FFFFFF'
 	},
 	formContainer: {
@@ -56,7 +57,13 @@ var styles = StyleSheet.create({
 		width: 90
 	},
 	rowContainer: {
-		padding: 10
+		flexDirection: 'column',
+		flex: 1,
+		padding: 30
+	},
+	rowText: {
+		fontSize:25,
+		padding:0
 	},
 	buttonText: {
 		fontSize: 18
@@ -69,7 +76,6 @@ var styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 	footerContainer: {
-		backgroundColor: '#E3E3E3',
 		alignItems: 'center',
 		flexDirection: 'row'
 	}
@@ -104,34 +110,44 @@ class Inventory extends Component {
 	}
 
 	handleGoToAdd(){
-		this.props.navigator.push(CONFIG.ROUTES.ADD_ITEMS);
+		this.props.navigator.push({
+			title: 'Add Items To Inventory',
+			component: AddItems
+		});
 	}
 
 	renderRow(rowData){
 		return (
-			<View>
-				<Text> {rowData.name} {rowData.price}</Text>
-				<TouchableNativeFeedback
-					style={styles.button}
-					onPress={this.handleTransaction.bind(this)}
-					underlayColor="#88D4F5">
-					<View>
-						<Text style={styles.buttonText}>SALE</Text>
-					</View>
-				</TouchableNativeFeedback>
+			<View style={styles.rowContainer}>
+				<Text style={styles.rowText}> {rowData.name} ${rowData.price}</Text>
+				<EnventureButton
+					width="100"
+					type="list"
+					icon="dollar"
+					iconSize="15"
+					onPress={() => Alert.alert(
+            'You are about to sell a product',
+            'Confirm transaction',
+            [
+              {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
+              {text: 'OK', onPress: () => {this.handleTransaction()}}
+            ]
+          )}
+				/>
 			</View>
 		)
 	}
 
 	footer(){
 		return (
-			<View style={styles.footerContainer}>
-				<TouchableHighlight
-					style={styles.button}
-					onPress={this.handleGoToAdd.bind(this)}
-					underlayColor="#88D4F5">
-					<Text style={styles.buttonText}>Add More Products</Text>
-				</TouchableHighlight>
+			<View>
+				<EnventureButton
+					width='100'
+				  type='footer'
+				  icon='plus-circle'
+				  iconSize='60'
+				  onPress={this.handleGoToAdd.bind(this)}
+				/>
 			</View>
 		)
 	}
@@ -141,11 +157,13 @@ class Inventory extends Component {
 			<View style={styles.container}>
 				<ListView
 					dataSource={this.state.dataSource}
-					renderRow={this.renderRow.bind(this)} />
+					renderRow={this.renderRow.bind(this)}/>
 				{this.footer()}
 			</View>
 		)
 	}
+	
+	React
 	
 }
 

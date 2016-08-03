@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 var CONFIG = require('../Utilities/Config.js');
-var EnventureButton = require('./EnventureButton.js').default;
-var InputWithTitle = require('./InputWithTitle.js').default;
+var EnventureButton = require('./EnventureButton.js');
+var InputWithTitle = require('./InputWithTitle.js');
 
 import {
   AppRegistry,
