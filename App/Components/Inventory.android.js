@@ -163,6 +163,8 @@ class Inventory extends Component {
 		)
 	}
 	
+	React
+	
 }
 
 module.exports = Inventory;
