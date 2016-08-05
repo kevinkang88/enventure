@@ -19,10 +19,16 @@ const InventorySchema = {
 const ItemSchema = {
   name: 'Item',
   properties: {
-    name: 'string'
+    name: 'string',
+    price: 'int',
+    cost: 'int',
+    quantity: 'int' 
   }
 };
 
-let schemas = new Realm({schema: [UserSchema, InventorySchema, ItemSchema]});
+let schemas = new Realm({
+	schema: [UserSchema, InventorySchema, ItemSchema],
+	schemaVersion: 2
+});
 
 module.exports = schemas;

@@ -28,14 +28,27 @@ var styles = StyleSheet.create({
 });
 
 class InputWithTitle extends React.Component {
+
+    label(){
+        if(this.props.children){
+            return(
+              <Text style={styles.titleStyle}> {this.props.children.toUpperCase()} </Text>
+            )
+        }
+    }
+
     render() {
         return (
             <View style={{flexDirection: 'row'}}>
                 <View style={{flex:.05}} />
                     <View style={{flex:.9, flexDirection: 'column'}}>
-                        <Text style={styles.titleStyle}> {this.props.children.toUpperCase()} </Text>
+                        {this.label()}
                         <View style={styles.inputWrapper}>
-                            <TextInput style={styles.inputStyle} textAlignVertical='center' underlineColorAndroid='rgba(0,0,0,0)' placeholder={this.props.placeholder}/>
+                            <TextInput
+	                            style={styles.inputStyle}
+	                            textAlignVertical='center'
+	                            underlineColorAndroid='rgba(0,0,0,0)'
+	                            placeholder={this.props.placeholder}/>
                         </View>
                     </View>
                 <View style={{flex:.05}} />

@@ -74,10 +74,6 @@ var styles = StyleSheet.create({
 		flex: 3,
 		alignItems: 'center',
 		justifyContent: 'center'
-	},
-	footerContainer: {
-		alignItems: 'center',
-		flexDirection: 'row'
 	}
 });
 
@@ -162,9 +158,6 @@ class Inventory extends Component {
 			</View>
 		)
 	}
-	
-	React
-	
 }
 
 module.exports = Inventory;
