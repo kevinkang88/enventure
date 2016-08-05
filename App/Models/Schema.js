@@ -22,13 +22,13 @@ const ItemSchema = {
     name: 'string',
     price: 'int',
     cost: 'int',
-    quantity: 'int' 
+    quantity: 'int'
   }
 };
 
 let schemas = new Realm({
 	schema: [UserSchema, InventorySchema, ItemSchema],
-	schemaVersion: 2
+	schemaVersion: 4
 });
 
 module.exports = schemas;

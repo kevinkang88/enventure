@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
 
 import {
-	AppRegistry,
 	StyleSheet,
 	Text,
-	View,
-	TextInput,
-	Navigator,
-	TouchableHighlight,
-	ScrollView,
-	ListView
+	View
 } from 'react-native';
 
-import { Form,
-	Separator,InputField, LinkField,
-	SwitchField, PickerField,DatePickerField,TimePickerField
+import {
+	Form,
+	InputField
 } from 'react-native-form-generator';
 
-var InputWithTitle = require('./InputWithTitle.js');
 var EnventureButton = require('./EnventureButton.js');
-var schemas = require('../Models/Schema');
+var schema = require('../Models/Schema');
 
 var styles = StyleSheet.create({
 	container:{
@@ -35,6 +28,11 @@ var styles = StyleSheet.create({
 		borderStyle: 'solid',
 		borderColor: '#6BCEBB',
 		margin: 10
+	},
+	footerContainer: {
+		position: 'absolute',
+		left: 0, right: 0,
+		bottom: 0
 	}
 });
 
@@ -48,18 +46,21 @@ class InventoryAdditemsForm extends Component {
 		}
 	}
 
-	handleAddItem(){
-		schemas.write(() => {
-			schemas.create('ItemSchema', this.state.formData);
-		});
-	};
-
 	handleGoToAdd(){
-		this.props.navigator.push({
-			title: 'Add Items To Inventory',
-			component: AddItems
-		});
+		this.setState({formData:{}});
 	}
+
+	handleAddItem(){
+		schema.write(() => {
+			schema.create('Item', {
+				name: 'Stive',
+				price: 10,
+				cost: 8,
+				quantity: 200
+			});
+		});
+
+	};
 
 	handleFormChange(formData){
 		/*
@@ -73,7 +74,9 @@ class InventoryAdditemsForm extends Component {
 		}
 		*/
 
-		this.setState({formData:formData});
+		// Something is breaking here!!!
+
+		// this.setState({formData:formData});
 		this.props.onFormChange && this.props.onFormChange(formData);
 	}
 
@@ -81,7 +84,7 @@ class InventoryAdditemsForm extends Component {
 
 	footer(){
 		return (
-			<View>
+			<View style={styles.footerContainer}>
 				<EnventureButton
 					width='100'
 					type='footer'
@@ -102,20 +105,21 @@ class InventoryAdditemsForm extends Component {
 					onChange={this.handleFormChange.bind(this)}
 					label="Add an Item">
 					<View style={styles.inputWrapper}>
-						<InputField ref='name' placeholder='Item Name'/>
+						<InputField ref='item_name' placeholder='Item Name'/>
 					</View>
 					<View style={styles.inputWrapper}>
-						<InputField ref='price' placeholder='Unit Price'/>
+						<InputField ref='item_price' placeholder='Unit Price'/>
 					</View>
 					<View style={styles.inputWrapper}>
-						<InputField ref='cost' placeholder='Unit Cast'/>
+						<InputField ref='item_cost' placeholder='Unit Cast'/>
 					</View>
 					<View style={styles.inputWrapper}>
-						<InputField ref='quantity' placeholder='Quantity'/>
+						<InputField ref='item_quantity' placeholder='Quantity'/>
 					</View>
 				</Form>
 				<EnventureButton
 					width='95'
+					type='footer'
 					icon='plus-circle'
 					iconSize='60'
 					onPress={this.handleAddItem.bind(this)}
@@ -128,7 +132,7 @@ class InventoryAdditemsForm extends Component {
 	render (){
 		return (
 			<View style={styles.container}>
-				{this.form()}
+				{this.form(this)}
 				{this.footer()}
 			</View>
 		)

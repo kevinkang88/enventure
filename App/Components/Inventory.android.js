@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-var EnventureButton = require('./EnventureButton.js');
-var AddItems = require('./InventoryAddItemsForm');
-
 import {
 	Alert,
 	AppRegistry,
@@ -16,7 +13,9 @@ import {
 	TouchableNativeFeedback
 } from 'react-native';
 
-
+var EnventureButton = require('./EnventureButton.js');
+var AddItems = require('./InventoryAddItemsForm');
+var schema = require('../Models/Schema');
 
 var styles = StyleSheet.create({
 	container: {
@@ -82,20 +81,7 @@ class Inventory extends Component {
 	constructor(props) {
 		super(props);
 		this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
-		this.inv = [
-				{
-					name: 'Poa Stove',
-					price: '10'
-				},
-				{
-					name: 'Queen Solar Panels',
-					price: '5'
-				},
-				{
-					name: 'Stove Coal Yeah',
-					price: '9'
-				}
-			];
+		this.inv = schema.objects('Item');
 		this.state = {
 			dataSource: this.ds.cloneWithRows(this.inv)
 		}
