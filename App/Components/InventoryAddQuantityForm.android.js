@@ -8,7 +8,8 @@ import {
 
 import {
 	Form,
-	InputField
+	InputField,
+	PickerField
 } from 'react-native-form-generator';
 
 var EnventureButton = require('./EnventureButton.js');
@@ -22,7 +23,7 @@ var styles = StyleSheet.create({
 	},
 	inputWrapper: {
 		flex:1,
-		height: 55,
+		height: 80,
 		borderWidth: 3,
 		borderRadius: 10,
 		borderStyle: 'solid',
@@ -36,7 +37,7 @@ var styles = StyleSheet.create({
 	}
 });
 
-class InventoryAdditemsForm extends Component {
+class InventoryAddQuantityForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
@@ -91,6 +92,15 @@ class InventoryAdditemsForm extends Component {
 		//	No idea what to put here :p
 	}
 
+	itemsNames(){
+		var obj={"":''};
+		schema.objects('Item').forEach((item)=>{
+			obj[item.name] = item.name
+		});
+
+		return obj
+	}
+
 	footer(){
 		return (
 			<View style={styles.footerContainer}>
@@ -114,26 +124,28 @@ class InventoryAdditemsForm extends Component {
 					onChange={this.handleFormChange.bind(this)}
 					label="Add an Item">
 					<View style={styles.inputWrapper}>
-						<InputField ref='item_name' placeholder='Item Name'/>
+						<PickerField ref='Item'
+					             label='Select a Product'
+					             options={this.itemsNames()}/>
 					</View>
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_price' placeholder='Unit Price'/>
-					</View>
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_cost' placeholder='Unit Cast'/>
-					</View>
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_quantity' placeholder='Quantity'/>
-					</View>
+
 				</Form>
+				<View style={{marginBottom: 10}}>
+					<EnventureButton
+						width='95'
+						type='footer'
+						icon='plus-circle'
+						iconSize='60'
+						onPress={this.handleAddItem.bind(this)}
+					/>
+				</View>
 				<EnventureButton
 					width='95'
 					type='footer'
-					icon='plus-circle'
+					icon='minus-circle'
 					iconSize='60'
 					onPress={this.handleAddItem.bind(this)}
 				/>
-				<Text>{JSON.stringify(this.state.formData)}</Text>
 			</View>
 		)
 	}
@@ -148,4 +160,4 @@ class InventoryAdditemsForm extends Component {
 	}
 }
 
-module.exports = InventoryAdditemsForm;
+module.exports = InventoryAddQuantityForm;
