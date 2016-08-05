@@ -37,18 +37,15 @@ class Main extends Component {
     this.props.navigator.push(CONFIG.ROUTES.ADD_ITEMS);
   }
 
-  goToAddCost() {
+  goToAddQuantity() {
     this.props.navigator.push(CONFIG.ROUTES.ADD_QUANTITY);
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <InputWithTitle placeholder='Name'>Inventory Item Name</InputWithTitle>
         <EnventureButton width={50} text='Enter' onPress={this.goToLogin.bind(this)}/>
         <EnventureButton width={75} text='Inventory' onPress={this.goToInventory.bind(this)}/>
-        <EnventureButton text='Add Items to Inventory' onPress={this.goToAddItems.bind(this)}/>
-        <EnventureButton text='Add Item Quantity' onPress={this.goToAddCost.bind(this)}/>
       </View>
     )
   }

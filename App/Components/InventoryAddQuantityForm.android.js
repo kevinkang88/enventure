@@ -14,6 +14,7 @@ import {
 
 var EnventureButton = require('./EnventureButton.js');
 var schema = require('../Models/Schema');
+var AddItems = require('./InventoryAddItemsForm.android');
 
 var styles = StyleSheet.create({
 	container:{
@@ -48,38 +49,21 @@ class InventoryAddQuantityForm extends Component {
 	}
 
 	handleGoToAdd(){
-		this.setState({formData:{}});
+		this.props.navigator.push({
+			title: 'Add Items To Inventory',
+			component: AddItems
+		});
 	}
 
-	handleAddItem(){
-		
-		// Seeds database... 
-		schema.write(() => {
-			schema.create('Item', {
-				name: 'Solar Panel',
-				price: 10,
-				cost: 8,
-				quantity: 200
-			});
-		});
-		
-		// Once form fixed
-		// schema.write(() => {
-		// 	schema.create('Item', this.state.formData);
-		// });
+	handleAddQuantity(){};
 
-	};
+	handleReduceQuantity(){};
+
 
 	handleFormChange(formData){
 		/*
-		formData will contain all the values of the form:
-
-		formData = {
-			item_name:"",
-			item_price:"",
-			item_cost: '',
-			item_quantity: Date
-		}
+		Here we might need to do something smart since
+		we all al items in memory
 		*/
 
 		// Something is breaking here!!!
@@ -132,19 +116,17 @@ class InventoryAddQuantityForm extends Component {
 				</Form>
 				<View style={{marginBottom: 10}}>
 					<EnventureButton
-						width='95'
-						type='footer'
+						width='30'
 						icon='plus-circle'
 						iconSize='60'
-						onPress={this.handleAddItem.bind(this)}
+						onPress={this.handleAddQuantity.bind(this)}
 					/>
 				</View>
 				<EnventureButton
-					width='95'
-					type='footer'
+					width='30'
 					icon='minus-circle'
 					iconSize='60'
-					onPress={this.handleAddItem.bind(this)}
+					onPress={this.handleReduceQuantity.bind(this)}
 				/>
 			</View>
 		)

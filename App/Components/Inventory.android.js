@@ -15,6 +15,7 @@ import {
 
 var EnventureButton = require('./EnventureButton.js');
 var AddItems = require('./InventoryAddItemsForm');
+var AddQuantity = require('./InventoryAddQuantityForm.android');
 var schema = require('../Models/Schema');
 
 var styles = StyleSheet.create({
@@ -91,10 +92,10 @@ class Inventory extends Component {
 		console.log("Handeling tansaction with DB");
 	}
 
-	handleGoToAdd(){
+	goToAddQuantity(){
 		this.props.navigator.push({
-			title: 'Add Items To Inventory',
-			component: AddItems
+			title: 'Add Quantity To Item',
+			component: AddQuantity
 		});
 	}
 
@@ -128,7 +129,7 @@ class Inventory extends Component {
 				  type='footer'
 				  icon='plus-circle'
 				  iconSize='60'
-				  onPress={this.handleGoToAdd.bind(this)}
+				  onPress={this.goToAddQuantity.bind(this)}
 				/>
 			</View>
 		)
