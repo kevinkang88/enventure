@@ -31,6 +31,22 @@ var styles = StyleSheet.create({
 		borderColor: '#6BCEBB',
 		margin: 10
 	},
+	// Not DRY CODE HERE
+	cardWrapper: {
+		flex:1,
+		height: 10,
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderWidth: 3,
+		borderRadius: 10,
+		borderStyle: 'solid',
+		borderColor: '#6BCEBB',
+		margin: 10
+	},
+	cardText: {
+		fontSize: 40,
+		color: '#6BCEBB'
+	},
 	footerContainer: {
 		position: 'absolute',
 		left: 0, right: 0,
@@ -42,9 +58,10 @@ class InventoryAddQuantityForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			inventoryItem: '',
+			items: schema.objects('Item'),
 			isLoading: false,
-			formData:{}
+			selectedItem: {},
+			quantity: 0 // This is just a placeholder until we fix data binding
 		}
 	}
 
@@ -55,21 +72,30 @@ class InventoryAddQuantityForm extends Component {
 		});
 	}
 
-	handleAddQuantity(){};
+	handleAddQuantity(){
+		this.setState({
+			quantity: this.state.quantity + 1
+		});
+	};
 
-	handleReduceQuantity(){};
+	handleReduceQuantity(){
+		if (this.state.quantity > 0){
+			this.setState({
+				quantity: this.state.quantity - 1
+			});
+		}
+	};
 
 
-	handleFormChange(formData){
-		/*
-		Here we might need to do something smart since
-		we all al items in memory
-		*/
+	handleFormChange(itemName){
+		var queryString = 'name = "'+ itemName +'"';
 
-		// Something is breaking here!!!
-		// Error: Calling component directly
-		// this.setState({formData:formData});
-		this.props.onFormChange && this.props.onFormChange(formData);
+		// We need to find a way to get the objects out of the Picker not just the name and find them again
+		this.setState({
+			selectedItem: this.state.items.filtered(queryString).slice(0, 1)
+		});
+
+		console.log('Cambio:', this.state.selectedItem[0].name);
 	}
 
 	handleFormFocus(){
@@ -77,12 +103,45 @@ class InventoryAddQuantityForm extends Component {
 	}
 
 	itemsNames(){
-		var obj={"":''};
-		schema.objects('Item').forEach((item)=>{
+		var obj={};
+		this.state.items.forEach((item)=>{
 			obj[item.name] = item.name
 		});
-
 		return obj
+	}
+
+	infoCard(){
+		return(
+			<View style={styles.cardWrapper}>
+				<Text style={styles.cardText}>QUANTITY</Text>
+				<Text style={styles.cardText}>{this.state.quantity}</Text>
+			</View>
+		)
+	}
+
+	buttons(){
+		return(
+			<View style={{marginBottom: 100}}>
+				<EnventureButton
+					width='30'
+					icon='plus-circle'
+					iconSize='60'
+					onPress={this.handleAddQuantity.bind(this)}
+				/>
+				<EnventureButton
+					width='30'
+					icon='minus-circle'
+					iconSize='60'
+					onPress={this.handleReduceQuantity.bind(this)}
+				/>
+				<EnventureButton
+					width='30'
+					text='done'
+					iconSize='60'
+					onPress={this.handleReduceQuantity.bind(this)}
+				/>
+			</View>
+		)
 	}
 
 	footer(){
@@ -102,32 +161,12 @@ class InventoryAddQuantityForm extends Component {
 	form(){
 		return(
 			<View keyboardShouldPersistTaps={true}>
-				<Form
-					ref='itemForm'
-					onFocus={this.handleFormFocus.bind(this)}
-					onChange={this.handleFormChange.bind(this)}
-					label="Add an Item">
-					<View style={styles.inputWrapper}>
-						<PickerField ref='Item'
-					             label='Select a Product'
-					             options={this.itemsNames()}/>
-					</View>
-
-				</Form>
-				<View style={{marginBottom: 10}}>
-					<EnventureButton
-						width='30'
-						icon='plus-circle'
-						iconSize='60'
-						onPress={this.handleAddQuantity.bind(this)}
-					/>
+				<View style={styles.inputWrapper}>
+					<PickerField
+						ref='Item'
+						options={this.itemsNames()}
+						onChange={this.handleFormChange.bind(this)}/>
 				</View>
-				<EnventureButton
-					width='30'
-					icon='minus-circle'
-					iconSize='60'
-					onPress={this.handleReduceQuantity.bind(this)}
-				/>
 			</View>
 		)
 	}
@@ -135,7 +174,9 @@ class InventoryAddQuantityForm extends Component {
 	render (){
 		return (
 			<View style={styles.container}>
-				{this.form(this)}
+				{this.form()}
+				{this.infoCard()}
+				{this.buttons()}
 				{this.footer()}
 			</View>
 		)

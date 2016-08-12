@@ -31,7 +31,8 @@ var styles = StyleSheet.create({
 	},
 	footerContainer: {
 		position: 'absolute',
-		left: 0, right: 0,
+		left: 0,
+		right: 0,
 		bottom: 0
 	}
 });
@@ -53,13 +54,13 @@ class InventoryAdditemsForm extends Component {
 	handleAddItem(){
 		
 		// Seeds database... 
-		schema.write(() => {
-			schema.create('Item', {
-				name: 'Solar Panel',
-				price: 10,
-				cost: 8,
-				quantity: 200
-			});
+			schema.write(() => {
+				schema.create('Item', {
+					name: 'Solar Panel',
+					price: 10,
+					cost: 8,
+					quantity: 200
+				});
 		});
 		
 		// Once form fixed
