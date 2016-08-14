@@ -1,6 +1,6 @@
-var AddItems = require('../Components/InventoryAddItemsForm');
+var AddItems = require('../Components/InventoryAddItemsForm.android');
 var AddQuantity = require('../Components/InventoryAddQuantityForm.android');
-var Inventory = require('../Components/Inventory');
+var Inventory = require('../Components/InventoryList.android');
 var Login = require('../Components/Login');
 var Main = require('../Components/Main');
 

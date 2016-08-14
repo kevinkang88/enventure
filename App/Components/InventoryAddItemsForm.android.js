@@ -11,7 +11,7 @@ import {
 	InputField
 } from 'react-native-form-generator';
 
-var EnventureButton = require('./EnventureButton.js');
+var EnventureButton = require('./../Helpers/EnventureButton.js');
 var schema = require('../Models/Schema');
 
 var styles = StyleSheet.create({
@@ -54,19 +54,19 @@ class InventoryAdditemsForm extends Component {
 	handleAddItem(){
 		
 		// Seeds database... 
-			schema.write(() => {
-				schema.create('Item', {
-					name: 'Solar Panel',
-					price: 10,
-					cost: 8,
-					quantity: 200
-				});
-		});
+		// 	schema.write(() => {
+		// 		schema.create('Item', {
+		// 			name: 'Solar Panel',
+		// 			price: 10,
+		// 			cost: 8,
+		// 			quantity: 200
+		// 		});
+		// });
 		
 		// Once form fixed
-		// schema.write(() => {
-		// 	schema.create('Item', this.state.formData);
-		// });
+		schema.write(() => {
+			schema.create('Item', this.state.formData);
+		});
 
 	};
 
@@ -84,7 +84,7 @@ class InventoryAdditemsForm extends Component {
 
 		// Something is breaking here!!!
 		// Error: Calling component directly
-		// this.setState({formData:formData});
+		this.setState({formData:formData});
 		this.props.onFormChange && this.props.onFormChange(formData);
 	}
 
@@ -121,7 +121,7 @@ class InventoryAdditemsForm extends Component {
 						<InputField ref='item_price' placeholder='Unit Price'/>
 					</View>
 					<View style={styles.inputWrapper}>
-						<InputField ref='item_cost' placeholder='Unit Cast'/>
+						<InputField ref='item_cost' placeholder='Unit Cost'/>
 					</View>
 					<View style={styles.inputWrapper}>
 						<InputField ref='item_quantity' placeholder='Quantity'/>

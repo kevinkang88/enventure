@@ -12,7 +12,7 @@ import {
 	PickerField
 } from 'react-native-form-generator';
 
-var EnventureButton = require('./EnventureButton.js');
+var EnventureButton = require('./../Helpers/EnventureButton.js');
 var schema = require('../Models/Schema');
 var AddItems = require('./InventoryAddItemsForm.android');
 

@@ -13,7 +13,7 @@ import {
 	TouchableNativeFeedback
 } from 'react-native';
 
-var EnventureButton = require('./EnventureButton.js');
+var EnventureButton = require('./../Helpers/EnventureButton.js');
 var AddItems = require('./InventoryAddItemsForm');
 var AddQuantity = require('./InventoryAddQuantityForm.android');
 var schema = require('../Models/Schema');
