@@ -41,14 +41,16 @@ class InventoryAdditemsForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			inventoryItem: '',
 			isLoading: false,
 			formData:{}
 		}
 	}
 
 	handleGoToAdd(){
-		this.setState({formData:{}});
+	/*
+	* TODO:
+	* Reset form to blank fields
+	* */
 	}
 
 	handleAddItem(){
@@ -67,23 +69,28 @@ class InventoryAdditemsForm extends Component {
 		schema.write(() => {
 			schema.create('Item', this.state.formData);
 		});
-
 	};
 
+	// We might find a way to do this differently
 	handleFormChange(formData){
 		/*
 		formData will contain all the values of the form:
-
 		formData = {
-			item_name:"",
-			item_price:"",
-			item_cost: '',
-			item_quantity: Date
+			name:"",
+			price:"",
+			cost: '',
+			quantity: Date
 		}
 		*/
 
-		// Something is breaking here!!!
-		// Error: Calling component directly
+		// Parsing strings to numbers
+		formData = {
+			name:  formData.name,
+			price: parseInt(formData.price),
+			cost: parseInt(formData.cost),
+			quantity: parseInt(formData.quantity)
+		};
+
 		this.setState({formData:formData});
 		this.props.onFormChange && this.props.onFormChange(formData);
 	}
@@ -108,29 +115,22 @@ class InventoryAdditemsForm extends Component {
 
 	form(){
 		return(
-			<View keyboardShouldPersistTaps={true}>
+			<View
+				keyboardShouldPersistTaps={true}>
 				<Form
 					ref='itemForm'
 					onFocus={this.handleFormFocus.bind(this)}
 					onChange={this.handleFormChange.bind(this)}
 					label="Add an Item">
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_name' placeholder='Item Name'/>
-					</View>
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_price' placeholder='Unit Price'/>
-					</View>
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_cost' placeholder='Unit Cost'/>
-					</View>
-					<View style={styles.inputWrapper}>
-						<InputField ref='item_quantity' placeholder='Quantity'/>
-					</View>
+					<InputField ref='name' placeholder='Item Name'/>
+					<InputField ref='price' placeholder='Unit Price'/>
+					<InputField ref='cost' placeholder='Unit Cost'/>
+					<InputField ref='quantity' placeholder='Quantity'/>
 				</Form>
 				<EnventureButton
 					width='95'
 					type='footer'
-					icon='plus-circle'
+					icon='check'
 					iconSize='60'
 					onPress={this.handleAddItem.bind(this)}
 				/>

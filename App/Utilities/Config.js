@@ -1,6 +1,6 @@
 var AddItems = require('../Components/InventoryAddItemsForm.android');
 var AddQuantity = require('../Components/InventoryAddQuantityForm.android');
-var Inventory = require('../Components/InventoryList.android');
+var InventoryList = require('../Components/InventoryList.android');
 var Login = require('../Components/Login');
 var Main = require('../Components/Main');
 
@@ -19,7 +19,7 @@ module.exports = {
         },
         INVENTORY: {
             title: 'Inventory',
-            component: Inventory
+            component: InventoryList
         },
         ADD_ITEMS: {
             title: 'Add Items To Inventory',
