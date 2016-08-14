@@ -64,7 +64,7 @@ class InventoryAdditemsForm extends Component {
 		// 			quantity: 200
 		// 		});
 		// });
-		
+
 		// Once form fixed
 		schema.write(() => {
 			schema.create('Item', this.state.formData);

@@ -88,8 +88,29 @@ class Inventory extends Component {
 		}
 	}
 
-	handleTransaction(){
-		console.log("Handeling tansaction with DB");
+	handleTransaction(rowData){
+		console.log("Handeling tansaction with DB", rowData);
+
+		/*
+		{
+		price: rowData.price,
+		cost: rowData.cost,
+		quantity: rowData.quantity,
+		createdAt: rowData.createdAt,
+		item: rowData}
+		* */
+
+		var transaction =	{
+			price: rowData.price,
+			cost: rowData.cost,
+			createdAt: Date.now(),
+			item: rowData};
+
+		schema.write(() => {
+			schema.create('Transaction', transaction);
+		});
+
+		console.log("Transaction: ", schema.objects('Transaction'));
 	}
 
 	goToAddQuantity(){
@@ -113,7 +134,7 @@ class Inventory extends Component {
             'Confirm transaction',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-              {text: 'OK', onPress: () => {this.handleTransaction()}}
+              {text: 'OK', onPress: () => {this.handleTransaction(rowData)}}
             ]
           )}
 				/>

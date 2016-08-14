@@ -26,9 +26,22 @@ const ItemSchema = {
   }
 };
 
+const TransactionSchema = {
+	name: 'Transaction',
+	properties: {
+		price: 'int',
+		cost: 'int',
+		quantity: {type: 'int', default: 1},
+		createdAt: {type: 'int', default: Date.now()},
+		item: {type: 'object', objectType: 'Item'}
+	}
+};
+
+
+
 let schemas = new Realm({
-	schema: [UserSchema, InventorySchema, ItemSchema],
-	schemaVersion: 4
+	schema: [UserSchema, InventorySchema, ItemSchema, TransactionSchema],
+	schemaVersion: 7
 });
 
 module.exports = schemas;
