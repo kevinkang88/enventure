@@ -14,7 +14,6 @@ var styles = StyleSheet.create({
         fontSize: 15,
         marginBottom:5
     },
-
     inputWrapper: {
         flex:1,
         height: 55,
@@ -23,21 +22,33 @@ var styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: '#6BCEBB'
     },
-
     inputStyle: {
         height:55
     }
 });
 
-export default class InputWithTitle extends React.Component {
+class InputWithTitle extends React.Component {
+
+    label(){
+        if(this.props.children){
+            return(
+              <Text style={styles.titleStyle}> {this.props.children.toUpperCase()} </Text>
+            )
+        }
+    }
+
     render() {
         return (
             <View style={{flexDirection: 'row'}}>
                 <View style={{flex:.05}} />
                     <View style={{flex:.9, flexDirection: 'column'}}>
-                        <Text style={styles.titleStyle}> {this.props.children.toUpperCase()} </Text>
+                        {this.label()}
                         <View style={styles.inputWrapper}>
-                            <TextInput style={styles.inputStyle} textAlignVertical='center' underlineColorAndroid='rgba(0,0,0,0)' placeholder={this.props.placeholder}/>
+                            <TextInput
+	                            style={styles.inputStyle}
+	                            textAlignVertical='center'
+	                            underlineColorAndroid='rgba(0,0,0,0)'
+	                            placeholder={this.props.placeholder}/>
                         </View>
                     </View>
                 <View style={{flex:.05}} />
@@ -45,4 +56,6 @@ export default class InputWithTitle extends React.Component {
         )
     }
 
-};
+}
+
+module.exports = InputWithTitle;

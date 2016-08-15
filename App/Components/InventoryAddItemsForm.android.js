@@ -1,75 +1,40 @@
 import React, { Component } from 'react';
-import Form from 'react-native-form';
 
 import {
-	AppRegistry,
 	StyleSheet,
 	Text,
-	View,
-	TextInput,
-	Navigator,
-	TouchableHighlight
+	View
 } from 'react-native';
 
+import {
+	Form,
+	InputField
+} from 'react-native-form-generator';
+
+var EnventureButton = require('./../Helpers/EnventureButton.js');
+var schema = require('../Models/Schema');
+var guidGenratior = require("../Utilities/guidGenerator");
+
 var styles = StyleSheet.create({
-	container: {
+	container:{
 		flex: 1,
-		padding: 30,
-		marginTop: 50,
 		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#FFFFFF',
+		backgroundColor: '#FFFFFF'
 	},
-	formContainer: {
-		backgroundColor: '#bdc3c7',
-		marginTop: 30,
-		marginBottom: 50,
-		width: 300,
-		flexDirection:'row'
-	},
-	header: {
-		textAlign: 'center',
-		fontSize: 32,
-		width: 300,
-		color: '#333333'
-	},
-	inventoryInput: {
-		height: 50,
-		flex: 1,
-		backgroundColor: '#ebeef0',
-		padding: 4,
-		marginRight: 5,
-		width: 200,
-		fontSize: 18,
-		borderWidth: 1,
-		textAlign: 'center',
-		borderColor: 'white', 
-		borderRadius: 8,
-		color: 'cornflowerblue'
-	},
-	buttonText: {
-		fontSize: 18,
-		color: "#111",
-		alignSelf: 'center'
-	},
-	button: {
+	inputWrapper: {
+		flex:1,
 		height: 55,
-		flexDirection: 'row',
-		backgroundColor: 'cornflowerblue',
-		borderColor: 'white',
-		borderWidth: 1,
-		borderRadius: 8,
-		marginBottom: 10,
-		marginTop: 20,
-		alignSelf: 'stretch',
-		justifyContent: 'center'
+		borderWidth: 3,
+		borderRadius: 10,
+		borderStyle: 'solid',
+		borderColor: '#6BCEBB',
+		margin: 10
 	},
-	inventoryQuantity: {
-		height: 50,
-		width: 50,
-		fontSize: 30,
-		textAlign: 'center',
-		color: 'cornflowerblue'
+	footerContainer: {
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		bottom: 0
 	}
 });
 
@@ -77,54 +42,112 @@ class InventoryAdditemsForm extends Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			inventoryItem: '',
-			isLoading: false
+			isLoading: false,
+			formData:{}
 		}
 	}
-	getTextInputField(){
-		// create another item form field
-		console.log("add another form field")
+
+	handleGoToAdd(){
+	/*
+	* TODO:
+	* Reset form to blank fields
+	* */
 	}
-	handleChange(event){
-		// this.refs.form.getValues() //how do we store this in a database on the phone? for development?
-		// will need to update to get multiple attributes from form
-		this.setState({
-			inventoryItem: event.nativeEvent.text,
-			inventoryQuantity: event.nativeEvent.text
-		})
-	}
-	handleSubmit(){
-		console.log('submitting')
-		this.setState({
-			isLoading: true
+
+	handleAddItem(){
+		
+		// Seeds database... 
+		// 	schema.write(() => {
+		// 		schema.create('Item', {
+		// 			name: 'Solar Panel',
+		// 			price: 10,
+		// 			cost: 8,
+		// 			quantity: 200
+		// 		});
+		// });
+
+		console.log(this.state.formData);
+
+		// Once form fixed
+		schema.write(() => {
+			schema.create('Item', this.state.formData);
 		});
-		// store data from input into database
+	};
+	
+	// We might find a way to do this differently
+	handleFormChange(formData){
+		/*
+		formData will contain all the values of the form:
+		formData = {
+			name:"",
+			price:"",
+			cost: '',
+			quantity: Date
+		}
+		*/
+
+		// Parsing strings to numbers
+		formData = {
+			id: guidGenratior(),
+			name:  formData.name,
+			price: parseInt(formData.price),
+			cost: parseInt(formData.cost),
+			quantity: parseInt(formData.quantity)
+		};
+
+		this.setState({formData: formData});
+		this.props.onFormChange && this.props.onFormChange(formData);
 	}
+
+	handleFormFocus(){
+		//	No idea what to put here :p
+	}
+
+	footer(){
+		return (
+			<View style={styles.footerContainer}>
+				<EnventureButton
+					width='100'
+					type='footer'
+					text='NEW'
+					iconSize='60'
+					onPress={this.handleGoToAdd.bind(this)}
+				/>
+			</View>
+		)
+	}
+
+	form(){
+		return(
+			<View
+				keyboardShouldPersistTaps={true}>
+				<Form
+					ref='itemForm'
+					onFocus={this.handleFormFocus.bind(this)}
+					onChange={this.handleFormChange.bind(this)}
+					label="Add an Item">
+					<InputField ref='name' placeholder='Item Name'/>
+					<InputField ref='price' placeholder='Unit Price'/>
+					<InputField ref='cost' placeholder='Unit Cost'/>
+					<InputField ref='quantity' placeholder='Quantity'/>
+				</Form>
+				<EnventureButton
+					width='95'
+					type='footer'
+					icon='check'
+					iconSize='60'
+					onPress={this.handleAddItem.bind(this)}
+				/>
+				<Text>{JSON.stringify(this.state.formData)}</Text>
+			</View>
+		)
+	}
+
 	render (){
 		return (
 			<View style={styles.container}>
-				<Text style={styles.header}>Inventory</Text>
-				<Form ref="form">
-					<View style={styles.formContainer}>
-						<TextInput style={styles.inventoryInput} value={this.state.inventoryItem} placeholder="new item" onChange={this.handleChange.bind(this) } />
-						<TextInput style={styles.inventoryQuantity} 
-						           value={this.state.inventoryQuantity} 
-						           placeholder="1" 
-						           onChange={this.handleChange.bind(this) } />
-					</View>
-				</Form>
-				<TouchableHighlight
-					style={styles.button}
-					onPress={this.handleSubmit.bind(this)}
-					underlayColor="white">
-					<Text style={styles.header}>DONE</Text>
-				</TouchableHighlight>
-				<TouchableHighlight
-					style={styles.button}
-					onPress={this.getTextInputField.bind(this)}
-					underlayColor="white">
-					<Text style={styles.header}>+ Items</Text>
-				</TouchableHighlight>
+				{this.form(this)}
+				{this.footer()}
 			</View>
 		)
 	}

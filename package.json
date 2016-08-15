@@ -9,7 +9,9 @@
     "react": "^0.14.8",
     "react-native": "^0.25.1",
     "react-native-form": "^2.0.6",
+    "react-native-form-generator": "^0.9.9",
     "react-native-swiper": "^1.4.3",
+    "react-native-vector-icons": "^2.0.3",
     "realm": "^0.14.1"
   },
   "devDependencies": {
