@@ -66,8 +66,6 @@ class InventoryAdditemsForm extends Component {
 		// 		});
 		// });
 
-		console.log(this.state.formData);
-
 		// Once form fixed
 		schema.write(() => {
 			schema.create('Item', this.state.formData);
@@ -146,7 +144,7 @@ class InventoryAdditemsForm extends Component {
 	render (){
 		return (
 			<View style={styles.container}>
-				{this.form(this)}
+				{this.form()}
 				{this.footer()}
 			</View>
 		)

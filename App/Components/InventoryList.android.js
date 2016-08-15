@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 
 var EnventureButton = require('./../Helpers/EnventureButton.js');
-var AddItems = require('./InventoryAddItemsForm');
 var AddQuantity = require('./InventoryAddQuantityForm.android');
 var schema = require('../Models/Schema');
 var guidGenratior = require("../Utilities/guidGenerator");
