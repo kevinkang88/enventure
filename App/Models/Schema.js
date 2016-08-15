@@ -2,7 +2,9 @@ var Realm = require('realm');
 
 const UserSchema = {
   name: 'User',
+	primaryKey: 'id',
   properties: {
+	  id: 'string',
     phoneNumber: 'string',
     inventories: {type: 'list', objectType: 'Inventory'}
   }
@@ -10,7 +12,9 @@ const UserSchema = {
 
 const InventorySchema = {
   name: 'Inventory',
+	primaryKey: 'id',
   properties: {
+	  id: 'string',
     name: 'string',
     items: {type: 'list', objectType: 'Item'}
   }
@@ -18,7 +22,9 @@ const InventorySchema = {
 
 const ItemSchema = {
   name: 'Item',
+	primaryKey: 'id',
   properties: {
+	  id: 'string',
     name: 'string',
     price: 'int',
     cost: 'int',
@@ -28,7 +34,9 @@ const ItemSchema = {
 
 const TransactionSchema = {
 	name: 'Transaction',
+	primaryKey: 'id',
 	properties: {
+		id: 'string',
 		price: 'int',
 		cost: 'int',
 		quantity: {type: 'int', default: 1},
@@ -41,7 +49,7 @@ const TransactionSchema = {
 
 let schemas = new Realm({
 	schema: [UserSchema, InventorySchema, ItemSchema, TransactionSchema],
-	schemaVersion: 7
+	schemaVersion: 11
 });
 
 module.exports = schemas;

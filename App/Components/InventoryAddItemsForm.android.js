@@ -13,6 +13,7 @@ import {
 
 var EnventureButton = require('./../Helpers/EnventureButton.js');
 var schema = require('../Models/Schema');
+var guidGenratior = require("../Utilities/guidGenerator");
 
 var styles = StyleSheet.create({
 	container:{
@@ -65,12 +66,14 @@ class InventoryAdditemsForm extends Component {
 		// 		});
 		// });
 
+		console.log(this.state.formData);
+
 		// Once form fixed
 		schema.write(() => {
 			schema.create('Item', this.state.formData);
 		});
 	};
-
+	
 	// We might find a way to do this differently
 	handleFormChange(formData){
 		/*
@@ -85,13 +88,14 @@ class InventoryAdditemsForm extends Component {
 
 		// Parsing strings to numbers
 		formData = {
+			id: guidGenratior(),
 			name:  formData.name,
 			price: parseInt(formData.price),
 			cost: parseInt(formData.cost),
 			quantity: parseInt(formData.quantity)
 		};
 
-		this.setState({formData:formData});
+		this.setState({formData: formData});
 		this.props.onFormChange && this.props.onFormChange(formData);
 	}
 

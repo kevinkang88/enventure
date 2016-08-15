@@ -17,6 +17,7 @@ var EnventureButton = require('./../Helpers/EnventureButton.js');
 var AddItems = require('./InventoryAddItemsForm');
 var AddQuantity = require('./InventoryAddQuantityForm.android');
 var schema = require('../Models/Schema');
+var guidGenratior = require("../Utilities/guidGenerator");
 
 var styles = StyleSheet.create({
 	container: {
@@ -89,28 +90,29 @@ class Inventory extends Component {
 	}
 
 	handleTransaction(rowData){
-		console.log("Handeling tansaction with DB", rowData);
-
+		//Object
 		/*
 		{
-		price: rowData.price,
-		cost: rowData.cost,
-		quantity: rowData.quantity,
-		createdAt: rowData.createdAt,
-		item: rowData}
-		* */
+			price: rowData.price,
+			cost: rowData.cost,
+			quantity: rowData.quantity,
+			createdAt: rowData.createdAt,
+			item: rowData
+		}
+		*/
 
 		var transaction =	{
+			id: guidGenratior(),
 			price: rowData.price,
 			cost: rowData.cost,
 			createdAt: Date.now(),
-			item: rowData};
+			item: rowData
+		};
 
 		schema.write(() => {
 			schema.create('Transaction', transaction);
+			schema.create('Item', {id: rowData.id, quantity: rowData.quantity - 1}, true);
 		});
-
-		console.log("Transaction: ", schema.objects('Transaction'));
 	}
 
 	goToAddQuantity(){
@@ -123,7 +125,10 @@ class Inventory extends Component {
 	renderRow(rowData){
 		return (
 			<View style={styles.rowContainer}>
-				<Text style={styles.rowText}> {rowData.name} ${rowData.price}</Text>
+				<View>
+					<Text style={styles.rowText}> {rowData.name} ${rowData.price}</Text>
+					<Text style={styles.rowText}> available: {rowData.quantity}</Text>
+				</View>
 				<EnventureButton
 					width="100"
 					type="list"
