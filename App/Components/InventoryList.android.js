@@ -165,7 +165,9 @@ class Inventory extends Component {
 			<View style={styles.container}>
 				<ListView
 					dataSource={this.state.dataSource}
-					renderRow={this.renderRow.bind(this)}/>
+					enableEmptySections={true}
+					renderRow={this.renderRow.bind(this)}
+				/>
 				{this.footer()}
 			</View>
 		)
