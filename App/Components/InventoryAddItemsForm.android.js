@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
 	StyleSheet,
 	Text,
-	View
+	View,
+	BackAndroid
 } from 'react-native';
 
 import {
@@ -45,6 +46,14 @@ class InventoryAdditemsForm extends Component {
 			isLoading: false,
 			formData:{}
 		}
+	}
+
+	componentDidMount() {
+		//the '.bind(this)' makes sure 'this' refers to 'ViewComponent'
+		BackAndroid.addEventListener('hardwareBackPress', function() {
+			this.props.navigator.pop();
+			return true;
+		}.bind(this));
 	}
 
 	handleGoToAdd(){

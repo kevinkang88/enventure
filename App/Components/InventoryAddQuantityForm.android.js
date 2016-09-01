@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
 	StyleSheet,
 	Text,
-	View
+	View,
+	BackAndroid
 } from 'react-native';
 
 import {
@@ -65,6 +66,14 @@ class InventoryAddQuantityForm extends Component {
 		}
 	}
 
+	componentDidMount() {
+		//the '.bind(this)' makes sure 'this' refers to 'ViewComponent'
+		BackAndroid.addEventListener('hardwareBackPress', function() {
+			this.props.navigator.pop();
+			return true;
+		}.bind(this));
+	}
+
 	handleGoToAdd(){
 		this.props.navigator.push({
 			title: 'Add Items To Inventory',
@@ -85,7 +94,6 @@ class InventoryAddQuantityForm extends Component {
 			});
 		}
 	};
-
 
 	handleFormChange(itemName){
 		var queryString = 'name = "'+ itemName +'"';

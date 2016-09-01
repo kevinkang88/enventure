@@ -81,10 +81,10 @@ class Inventory extends Component {
 
 	constructor(props) {
 		super(props);
-		this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+		this.dataSource = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
 		this.inv = schema.objects('Item');
 		this.state = {
-			dataSource: this.ds.cloneWithRows(this.inv)
+			dataSource: this.dataSource.cloneWithRows(this.inv)
 		}
 	}
 
@@ -138,7 +138,9 @@ class Inventory extends Component {
             'Confirm transaction',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-              {text: 'OK', onPress: () => {this.handleTransaction(rowData)}}
+              {text: 'OK', onPress: () => {
+                  this.handleTransaction(rowData);
+                }}
             ]
           )}
 				/>
