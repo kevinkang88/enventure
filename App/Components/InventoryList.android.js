@@ -10,7 +10,8 @@ import {
 	TextInput,
 	Navigator,
 	TouchableHighlight,
-	TouchableNativeFeedback
+	TouchableNativeFeedback,
+	BackAndroid
 } from 'react-native';
 
 var EnventureButton = require('./../Helpers/EnventureButton.js');
@@ -86,6 +87,17 @@ class Inventory extends Component {
 		this.state = {
 			dataSource: this.dataSource.cloneWithRows(this.inv)
 		}
+	}
+
+	// Back button working poping one element of the stack at the time
+	componentDidMount() {
+		//the '.bind(this)' makes sure 'this' refers to 'ViewComponent'
+		BackAndroid.addEventListener('hardwareBackPress', function() {
+			if (this.props.navigator && this.props.navigator.getCurrentRoutes().length > 1) {
+				this.props.navigator.pop();
+				return true;
+			}
+		}.bind(this));
 	}
 
 	handleTransaction(rowData){

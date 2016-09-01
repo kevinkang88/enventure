@@ -66,14 +66,6 @@ class InventoryAddQuantityForm extends Component {
 		}
 	}
 
-	componentDidMount() {
-		//the '.bind(this)' makes sure 'this' refers to 'ViewComponent'
-		BackAndroid.addEventListener('hardwareBackPress', function() {
-			this.props.navigator.pop();
-			return true;
-		}.bind(this));
-	}
-
 	handleGoToAdd(){
 		this.props.navigator.push({
 			title: 'Add Items To Inventory',

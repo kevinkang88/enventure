@@ -47,15 +47,7 @@ class InventoryAdditemsForm extends Component {
 			formData:{}
 		}
 	}
-
-	componentDidMount() {
-		//the '.bind(this)' makes sure 'this' refers to 'ViewComponent'
-		BackAndroid.addEventListener('hardwareBackPress', function() {
-			this.props.navigator.pop();
-			return true;
-		}.bind(this));
-	}
-
+	
 	handleGoToAdd(){
 	/*
 	* TODO:
