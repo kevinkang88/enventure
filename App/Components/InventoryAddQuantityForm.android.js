@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
 	StyleSheet,
 	Text,
-	View
+	View,
+	BackAndroid
 } from 'react-native';
 
 import {
@@ -85,7 +86,6 @@ class InventoryAddQuantityForm extends Component {
 			});
 		}
 	};
-
 
 	handleFormChange(itemName){
 		var queryString = 'name = "'+ itemName +'"';

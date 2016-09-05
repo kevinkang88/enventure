@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
 	StyleSheet,
 	Text,
-	View
+	View,
+	BackAndroid
 } from 'react-native';
 
 import {
@@ -46,7 +47,7 @@ class InventoryAdditemsForm extends Component {
 			formData:{}
 		}
 	}
-
+	
 	handleGoToAdd(){
 	/*
 	* TODO:

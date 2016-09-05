@@ -10,7 +10,8 @@ import {
 	TextInput,
 	Navigator,
 	TouchableHighlight,
-	TouchableNativeFeedback
+	TouchableNativeFeedback,
+	BackAndroid
 } from 'react-native';
 
 var EnventureButton = require('./../Helpers/EnventureButton.js');
@@ -81,11 +82,22 @@ class Inventory extends Component {
 
 	constructor(props) {
 		super(props);
-		this.ds = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+		this.dataSource = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
 		this.inv = schema.objects('Item');
 		this.state = {
-			dataSource: this.ds.cloneWithRows(this.inv)
+			dataSource: this.dataSource.cloneWithRows(this.inv)
 		}
+	}
+
+	// Back button working poping one element of the stack at the time
+	componentDidMount() {
+		//the '.bind(this)' makes sure 'this' refers to 'ViewComponent'
+		BackAndroid.addEventListener('hardwareBackPress', function() {
+			if (this.props.navigator && this.props.navigator.getCurrentRoutes().length > 1) {
+				this.props.navigator.pop();
+				return true;
+			}
+		}.bind(this));
 	}
 
 	handleTransaction(rowData){
@@ -138,7 +150,9 @@ class Inventory extends Component {
             'Confirm transaction',
             [
               {text: 'Cancel', onPress: () => console.log('Cancel Pressed!')},
-              {text: 'OK', onPress: () => {this.handleTransaction(rowData)}}
+              {text: 'OK', onPress: () => {
+                  this.handleTransaction(rowData);
+                }}
             ]
           )}
 				/>
