@@ -8,7 +8,7 @@ import {
     } from 'react-native';
 
 class ENVenture extends Component {
-	
+
     render() {
         return (
             <Navigator
