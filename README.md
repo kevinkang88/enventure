@@ -8,7 +8,7 @@ Cash-based entrepreneurs that are using smartphones to help run their business d
 
 
 ### Results
-Prototype has handed to [Enventure Enterprises](https://www.enventureenterprises.org/) to be use as a proof of concept.
+Prototype was handed to [Enventure Enterprises](https://www.enventureenterprises.org/) to be use as a proof of concept.
 
 ### List of sellable items
 ![list](./docs/items-sell-list.png)
