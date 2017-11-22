@@ -1,11 +1,23 @@
 ## Enventure Inventory Management Tool
 
-This mobile-first app is an inventory management tool for cash-based entrepreneurs. Built on React Native for Android v 4.2.2
+This mobile-first app is an inventory management tool for cash-based entrepreneurs. Built on React Native for Android v 4.2.2 and to be run on low cost Android Phones.
 
 ### Description
 
-Cash-based entrepreneurs that are using smartphones to help run their business don't have a way to keep track of inventory and sales in a simple way. This inventory management tool allows an entrepreneur to track and make predictions for inventory management. 
+Cash-based entrepreneurs that are using smartphones to help run their business don't have a way to keep track of inventory and sales in a simple way. This inventory management tool allows an entrepreneur to track and make predictions for inventory management in a context were internet access is not a given. Use case Uganda, Africa.
 
+
+### Results
+Prototype has handed to [Enventure Enterprises](https://www.enventureenterprises.org/) to be use as a proof of concept.
+
+### List of sellable items
+![list](./docs/items-sell-list.png)
+### Sale confirmation
+![sell](./docs/item-sell-confirmation.png)
+### Add quantity
+![qty](./docs/item-add-qty.png)
+### Add new Item
+![sell](./docs/items-add-new.png)
 
 ### User Stories
 - User signs up with phone number
@@ -37,12 +49,3 @@ Make sure you've got the prereqs (SDK, Java)
 Start an Android emulator
 Start the app  
  ```$ react-native run-android```
-
-
-### Contributing
-1. Fork. Clone down your fork.
-2. Create a well named branch that contains the change
-3. Code! Commit early and often
-4. Adding new functionality? Add that to the README
-5. Push the branch to Github
-6. Send a PR to enventure/develop
